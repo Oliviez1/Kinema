@@ -98,7 +98,7 @@ select.f,input.f{width:100%;padding:10px 12px;background:var(--surface2);border:
 .gbar{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:.78rem}.gbar em{width:110px;text-align:right;font-style:normal;color:var(--muted)}.gbar div{flex:1;height:10px;border:2px solid var(--ink)}.gbar div i{display:block;height:100%;background:var(--ac)}
 .ml{display:flex;gap:6px;margin-top:8px}
 .mb{flex:1;padding:7px 8px;border:2px solid var(--ink);background:var(--surface2);font-size:.68rem;font-weight:800;text-transform:uppercase}.mb:hover{background:var(--hl);color:#15131a}
-.toasts{position:fixed;bottom:22px;right:22px;z-index:999;display:flex;flex-direction:column;gap:8px}
+.toasts{position:fixed;bottom:22px;right:22px;z-index:99999;display:flex;flex-direction:column;gap:8px}
 .toast{background:var(--surface);border:2px solid var(--ink);padding:11px 15px;font-size:.84rem;box-shadow:4px 4px 0 var(--ac);animation:fi .2s}
 .spin{width:24px;height:24px;border:3px solid var(--ink);border-top-color:var(--ac);border-radius:50%;animation:sp .7s linear infinite;margin:40px auto}@keyframes sp{to{transform:rotate(360deg)}}
 .empty{text-align:center;padding:60px 20px;color:var(--muted);border:2px dashed var(--ink)}
@@ -106,10 +106,39 @@ select.f,input.f{width:100%;padding:10px 12px;background:var(--surface2);border:
 .note{font-size:.76rem;color:var(--muted);line-height:1.6;margin-top:8px}
 .keybox{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:16px 18px;margin-bottom:28px;background:var(--surface);border:2px solid var(--hl);box-shadow:5px 5px 0 var(--hl)}
 .keybox p{flex:1;min-width:240px;font-size:.84rem;line-height:1.55}.keybox input{padding:10px 12px;background:var(--surface2);border:2px solid var(--ink);width:280px}
+#auth{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:16px}
+.abox{width:100%;max-width:400px;background:var(--surface);border:2px solid var(--ink);border-top:5px solid var(--ac);box-shadow:8px 8px 0 var(--ac);padding:32px 28px}
+.alogo{display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--serif);font-size:2rem;text-transform:uppercase;margin-bottom:6px}
+.alogo i{font-style:normal;display:grid;place-items:center;width:40px;height:40px;background:var(--ac);color:#fff;border:2px solid var(--ink)}
+.asub{text-align:center;font-size:.8rem;color:var(--muted);margin-bottom:22px}
+.atabs{display:flex;border:2px solid var(--ink);margin-bottom:20px}.atab{flex:1;padding:10px;font-weight:800;font-size:.8rem;background:var(--surface2);color:var(--muted)}.atab.on{background:var(--ac);color:#fff}
+.alabel{display:block;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.ainput{width:100%;padding:11px 13px;background:var(--surface2);border:2px solid var(--ink);margin-bottom:14px}.ainput:focus{outline:0;box-shadow:3px 3px 0 var(--ac)}
+.aerr{min-height:20px;font-size:.78rem;color:#e0524f;text-align:center;margin-top:12px}
 @media(max-width:900px){.navbar{padding:0 12px;gap:8px}.sbox input{width:120px}.wrap{padding:20px 16px}.hc{left:20px;right:20px}.ht{font-size:2rem}.hbg{width:100%;opacity:.3;clip-path:none}.db{grid-template-columns:1fr;padding:24px 16px}.dhc{flex-direction:column;align-items:flex-start;padding:110px 16px 30px}.dhc>img{width:150px}.logo span{display:none}.back{left:16px}}
 </style>
 </head>
 <body>
+<div id="auth">
+  <div class="abox">
+    <div class="alogo"><i>K</i>Kinéma</div>
+    <div class="asub" id="asub">Chargement…</div>
+    <div class="atabs" id="atabs" style="display:none"><button class="atab on" id="t-login" onclick="authTab('login')">Connexion</button><button class="atab" id="t-reg" onclick="authTab('reg')">Créer mon compte</button></div>
+    <div id="f-login" style="display:none">
+      <label class="alabel">Pseudo</label><input class="ainput" id="lp" autocomplete="username" onkeydown="if(event.key==='Enter')$('#lw').focus()">
+      <label class="alabel">Mot de passe</label><input class="ainput" id="lw" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+      <button class="btn" style="width:100%;justify-content:center" onclick="doLogin()">Se connecter</button>
+    </div>
+    <div id="f-reg" style="display:none">
+      <label class="alabel">Pseudo</label><input class="ainput" id="rp" autocomplete="username" placeholder="lettres, chiffres, _">
+      <label class="alabel">Mot de passe</label><input class="ainput" id="rw" type="password" autocomplete="new-password" placeholder="6 caractères minimum">
+      <label class="alabel">Confirmer</label><input class="ainput" id="rw2" type="password" autocomplete="new-password" onkeydown="if(event.key==='Enter')doRegister()">
+      <button class="btn" style="width:100%;justify-content:center" onclick="doRegister()">Créer mon compte</button>
+      <p class="note" style="text-align:center">Le premier compte créé devient le propriétaire du site. Ensuite, les inscriptions sont fermées.</p>
+    </div>
+    <div class="aerr" id="aerr"></div>
+  </div>
+</div>
 <nav class="navbar">
   <a class="logo" href="#home"><i>K</i><span>Kinéma</span></a>
   <div class="links">
@@ -123,6 +152,106 @@ select.f,input.f{width:100%;padding:10px 12px;background:var(--surface2);border:
   <div class="page" id="p-mylist"></div><div class="page" id="p-profile"></div><div class="page" id="p-detail"></div>
 </main>
 <div class="toasts" id="toasts"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+/* ====== COLLE ICI TON firebaseConfig (Firebase > Paramètres du projet > Vos applications) ====== */
+const firebaseConfig = {
+  apiKey: "COLLE_ICI",
+  authDomain: "COLLE_ICI",
+  projectId: "COLLE_ICI",
+  storageBucket: "COLLE_ICI",
+  messagingSenderId: "COLLE_ICI",
+  appId: "COLLE_ICI"
+};
+/* ================================================================================================ */
+
+const DOMAIN = '@kinema.app';
+const $a = id => document.getElementById(id);
+const err = m => { $a('aerr').textContent = m || ''; };
+const clean = s => String(s || '').toLowerCase().trim().replace(/[^a-z0-9_]/g, '').slice(0, 20);
+
+if (!firebaseConfig.apiKey || firebaseConfig.apiKey === 'COLLE_ICI') {
+  $a('asub').textContent = '';
+  err('Config Firebase manquante : colle ton firebaseConfig en haut du script du fichier index.html.');
+} else {
+  const app = initializeApp(firebaseConfig), auth = getAuth(app), db = getFirestore(app);
+  const ownerRef = doc(db, 'meta', 'owner');
+  let ownerKnown = null, started = false;
+
+  async function ownerExists() { try { return (await getDoc(ownerRef)).exists(); } catch (e) { return null; } }
+  function showForms(ownerTaken) {
+    $a('asub').textContent = ownerTaken ? 'Accès privé · connecte-toi' : 'Premier lancement · crée ton compte propriétaire';
+    $a('atabs').style.display = ownerTaken ? 'none' : 'flex';
+    $a('f-login').style.display = ownerTaken ? '' : 'none';
+    $a('f-reg').style.display = ownerTaken ? 'none' : '';
+    if (!ownerTaken) window.authTab('reg');
+  }
+  window.authTab = t => {
+    $a('f-login').style.display = t === 'login' ? '' : 'none';
+    $a('f-reg').style.display = t === 'reg' ? '' : 'none';
+    $a('t-login').classList.toggle('on', t === 'login');
+    $a('t-reg').classList.toggle('on', t === 'reg');
+    err('');
+  };
+  window.doLogin = async () => {
+    const p = clean($a('lp').value), w = $a('lw').value;
+    if (!p || !w) return err('Entre ton pseudo et ton mot de passe');
+    err('⏳ Connexion…');
+    try { await signInWithEmailAndPassword(auth, p + DOMAIN, w); err(''); }
+    catch (e) { err(['auth/invalid-credential', 'auth/wrong-password', 'auth/user-not-found', 'auth/invalid-email'].includes(e.code) ? 'Pseudo ou mot de passe incorrect' : e.message); }
+  };
+  window.doRegister = async () => {
+    const p = clean($a('rp').value), w = $a('rw').value;
+    if (p.length < 3) return err('Pseudo trop court (3 caractères minimum)');
+    if (w.length < 6) return err('Mot de passe trop court (6 minimum)');
+    if (w !== $a('rw2').value) return err('Les mots de passe ne correspondent pas');
+    err('⏳ Création…');
+    if (await ownerExists()) { showForms(true); return err('Les inscriptions sont fermées : ce site a déjà un propriétaire.'); }
+    let cred;
+    try { cred = await createUserWithEmailAndPassword(auth, p + DOMAIN, w); }
+    catch (e) { return err(e.code === 'auth/email-already-in-use' ? 'Ce pseudo existe déjà' : e.message); }
+    try {
+      await setDoc(ownerRef, { uid: cred.user.uid, pseudo: p, createdAt: Date.now() });
+      await setDoc(doc(db, 'users', cred.user.uid), { pseudo: p, list: [], updatedAt: Date.now() });
+    } catch (e) {
+      try { await cred.user.delete(); } catch (x) {}
+      showForms(true); err('Inscriptions fermées : le propriétaire existe déjà.');
+    }
+  };
+  window.doLogout = async () => { if (!confirm('Se déconnecter ?')) return; await signOut(auth); location.reload(); };
+
+  window.cloudSave = async payload => {
+    const u = auth.currentUser; if (!u) return;
+    await setDoc(doc(db, 'users', u.uid), { ...payload, updatedAt: Date.now() }, { merge: true });
+  };
+
+  onAuthStateChanged(auth, async user => {
+    if (!user) {
+      $a('auth').style.display = 'flex';
+      ownerKnown = await ownerExists();
+      if (ownerKnown === null) { $a('asub').textContent = ''; err('Impossible de joindre Firebase (règles Firestore ou réseau).'); return; }
+      showForms(ownerKnown);
+      return;
+    }
+    try {
+      const snap = await getDoc(doc(db, 'users', user.uid));
+      const data = snap.exists() ? snap.data() : { list: [] };
+      $a('auth').style.display = 'none';
+      window.USER_PSEUDO = data.pseudo || (user.email || '').replace(DOMAIN, '');
+      if (!started) { started = true; window.startApp(data); }
+    } catch (e) {
+      await signOut(auth);
+      $a('auth').style.display = 'flex';
+      err('Accès refusé : ce compte n\'est pas le propriétaire du site.');
+    }
+  });
+}
+</script>
+
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -130,8 +259,10 @@ const strip=h=>(h||'').replace(/<[^>]+>/g,'').trim();
 const FALLBACK="data:image/svg+xml,"+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='300' height='450'><rect width='300' height='450' fill='#1b1b24'/><text x='150' y='230' fill='#8b8896' font-size='20' text-anchor='middle' font-family='sans-serif'>Pas d'affiche</text></svg>");
 function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;$('#toasts').appendChild(t);setTimeout(()=>t.remove(),3000)}
 const ST={planned:['À voir','#7aa2ff'],watching:['En cours','#b79bff'],completed:['Terminé','#3fe0a0'],dropped:['Abandonné','#e0524f']};
-let LIST=[];try{LIST=JSON.parse(localStorage.getItem('kinema_v1')||'[]')}catch(e){}
-const save=()=>localStorage.setItem('kinema_v1',JSON.stringify(LIST));
+let LIST=[];
+let _st=null;
+const payload=()=>({list:LIST,tmdb:localStorage.getItem('kinema_tmdb')||'',accent:localStorage.getItem('kinema_acc')||'ai'});
+const save=()=>{clearTimeout(_st);_st=setTimeout(()=>{window.cloudSave&&window.cloudSave(payload()).catch(e=>toast('Sauvegarde cloud impossible : '+e.message))},600)};
 const inList=k=>LIST.find(x=>x.key===k);
 const TMDB=()=>localStorage.getItem('kinema_tmdb')||'';
 const CACHE={};
@@ -208,7 +339,6 @@ async function movFamous(name,terms,per){
     return out;
   },7);
 }
-/* rangées de la page Films : [titre, getter TMDB, termes iTunes] */
 const FILM_ROWS=[
  ['Tendances de la semaine',()=>tmList('/trending/movie/week'),['Marvel Avengers','Star Wars','Harry Potter','Batman','James Bond','Jurassic Park'],5],
  ['Au cinéma',()=>tmList('/movie/now_playing','&region=FR'),['Mission Impossible','Fast and Furious','Pixar','Disney'],5],
@@ -221,8 +351,6 @@ const FILM_ROWS=[
  ['Thriller',()=>tmList('/discover/movie','&with_genres=53&sort_by=popularity.desc&vote_count.gte=500'),['Seven','Shutter Island','Le Silence des agneaux','Joker'],3]
 ];
 async function movRow(i){const [,tmf,terms,per]=FILM_ROWS[i];return TMDB()?tmf():movFamous('row'+i,terms,per)}
-async function movTrending(){return movRow(0)}
-async function movTop(){return movRow(2)}
 async function movSearch(q){
   if(TMDB())return tmList('/search/movie','&query='+encodeURIComponent(q));
   return (await getJSON(`${ITU}/search?term=${encodeURIComponent(q)}&media=movie&entity=movie&country=fr&limit=40`)).results.map(normIT);
@@ -249,9 +377,12 @@ const grid=l=>l.length?`<div class="grid">${l.map(a=>card(a)).join('')}</div>`:'
 const spin='<div class="spin"></div>';
 function quickAdd(key){const a=CC[key];if(!a)return;add(a);toast(a.title+' ajouté ✓');route2()}
 function add(a,status='planned'){if(inList(a.key))return;LIST.push({key:a.key,type:a.type,id:a.id,title:a.title,cover:a.cover,genres:a.genres||[],year:a.year,status,rating:0,watched:[],totalEps:a.totalEps||0,runtime:a.runtime||(a.type==='tv'?45:110),addedAt:Date.now()});save()}
-function keyBox(){return TMDB()?'':`<div class="keybox"><p><b>Pour avoir les vrais films populaires</b> (tendances, notes, genres, bandes-annonces), colle ta clé TMDB gratuite : <a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">themoviedb.org/settings/api</a> (« API Key », pas le « Read Access Token »). Sans clé, je montre des sagas connues via iTunes.</p>
+function keyBox(){return TMDB()?'':`<div class="keybox"><p><b>Pour avoir les vrais films populaires</b> (tendances, notes, genres, bandes-annonces), colle ta clé TMDB gratuite : <a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">themoviedb.org/settings/api</a> (« API Key », pas le « Read Access Token »). Elle sera enregistrée dans ton compte.</p>
   <input id="kk" placeholder="Clé API TMDB (32 caractères)"><button class="btn" onclick="setKey($('#kk').value)">Activer</button></div>`}
-function setKey(v){v=(v||'').trim();if(!/^[a-f0-9]{32}$/i.test(v)){toast('Clé invalide : 32 caractères (API Key v3)');return}localStorage.setItem('kinema_tmdb',v);toast('Clé enregistrée ✓');setTimeout(()=>location.reload(),600)}
+async function setKey(v){v=(v||'').trim();if(v&&!/^[a-f0-9]{32}$/i.test(v)){toast('Clé invalide : 32 caractères (API Key v3)');return}
+  v?localStorage.setItem('kinema_tmdb',v):localStorage.removeItem('kinema_tmdb');
+  try{await window.cloudSave(payload());toast('Clé enregistrée ✓')}catch(e){toast('Erreur : '+e.message)}
+  setTimeout(()=>location.reload(),500)}
 
 /* ===== ROUTEUR ===== */
 let heroT=null;
@@ -266,7 +397,7 @@ function route(){
   ({home:rHome,films:rFilms,catalogue:rCat,schedule:rSched,mylist:rList,profile:rProfile,item:()=>rDetail(h.slice(5))})[page]();
 }
 function route2(){const h=location.hash.slice(1)||'home';if(h.startsWith('item/'))return;const y=scrollY;route();setTimeout(()=>scrollTo(0,y),0)}
-addEventListener('hashchange',route);
+addEventListener('hashchange',()=>{if(window.APP_ON)route()});
 const rowHTML=(id,title,more='')=>`<div class="sec"><div class="sh"><span class="st">${title}</span>${more}</div><div class="row" id="${id}">${spin}</div></div>`;
 const fillRow=(id,l)=>{const e=$(id);if(e)e.innerHTML=l.length?l.map(a=>card(a)).join(''):'<div class="empty" style="width:100%">Indisponible pour le moment.</div>'};
 
@@ -294,7 +425,7 @@ let hi=0;
 function goHero(i){hi=i;document.querySelectorAll('.hs').forEach((s,j)=>s.classList.toggle('on',j===i));document.querySelectorAll('.dot').forEach((s,j)=>s.classList.toggle('on',j===i))}
 function startHero(){clearInterval(heroT);heroT=setInterval(()=>{if(window.HERO&&HERO.length)goHero((hi+1)%HERO.length)},7000)}
 
-/* ===== PAGE FILMS ===== */
+/* ===== FILMS ===== */
 let filmsToken=0;
 async function rFilms(){
   const el=$('#p-films'),tok=++filmsToken;
@@ -428,20 +559,26 @@ function rProfile(){
   const xp=eps*10+films*40+c('completed')*30+LIST.length*5,lvl=Math.floor(Math.sqrt(xp/40))+1;
   const gc={};LIST.forEach(x=>(x.genres||[]).forEach(g=>gc[g]=(gc[g]||0)+1));const tg=Object.entries(gc).sort((a,b)=>b[1]-a[1]).slice(0,6),mx=tg[0]?.[1]||1;
   const h=mins>=60?Math.round(mins/60)+' h':mins+' min';
-  $('#p-profile').innerHTML=`<div class="wrap"><h1 class="pt">Mon profil</h1><div class="stats">${[['Titres',LIST.length],['Séries',LIST.filter(x=>x.type==='tv').length],['Films vus',films],['Épisodes',eps],['Temps',h],['Note moy.',avg],['Niveau',lvl],['XP',xp]].map(([l,v])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('')}</div>
+  $('#p-profile').innerHTML=`<div class="wrap"><h1 class="pt">@${esc(window.USER_PSEUDO||'')}</h1><div class="stats">${[['Titres',LIST.length],['Séries',LIST.filter(x=>x.type==='tv').length],['Films vus',films],['Épisodes',eps],['Temps',h],['Note moy.',avg],['Niveau',lvl],['XP',xp]].map(([l,v])=>`<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('')}</div>
   <div class="panel"><div class="pt2">Genres favoris</div>${tg.length?tg.map(([g,n])=>`<div class="gbar"><em>${esc(g)}</em><div><i style="width:${Math.round(n/mx*100)}%"></i></div>${n}</div>`).join(''):'<p class="note">Ajoute des titres pour voir tes genres.</p>'}</div>
   <div class="panel"><div class="pt2">Couleur d'accent</div><div class="pills">${['ai','sakura','matcha','shu','sumire'].map(a=>`<button class="pl" onclick="setAccent('${a}')">${a}</button>`).join('')}</div></div>
-  <div class="panel"><div class="pt2">Clé TMDB (films)</div><input class="f" id="tk" placeholder="Clé API TMDB (v3, 32 caractères)" value="${esc(TMDB())}"><button class="btn" onclick="setKey($('#tk').value)">Enregistrer</button> <button class="btn s" onclick="localStorage.removeItem('kinema_tmdb');location.reload()">Retirer la clé</button></div>
-  <div class="panel"><div class="pt2">Données</div><button class="btn s" onclick="exportJSON()">Exporter JSON</button> <label class="btn s">Importer<input type="file" accept=".json" hidden onchange="importJSON(this)"></label></div></div>`;
+  <div class="panel"><div class="pt2">Clé TMDB (films)</div><input class="f" id="tk" placeholder="Clé API TMDB (v3, 32 caractères)" value="${esc(TMDB())}"><button class="btn" onclick="setKey($('#tk').value)">Enregistrer</button> <button class="btn s" onclick="setKey('')">Retirer la clé</button></div>
+  <div class="panel"><div class="pt2">Compte et données</div><button class="btn s" onclick="exportJSON()">Exporter JSON</button> <label class="btn s">Importer<input type="file" accept=".json" hidden onchange="importJSON(this)"></label> <button class="btn s" onclick="doLogout()">Se déconnecter</button></div></div>`;
 }
-function setAccent(a){document.documentElement.dataset.accent=a;localStorage.setItem('kinema_acc',a)}
-setAccent(localStorage.getItem('kinema_acc')||'ai');
+function setAccent(a){document.documentElement.dataset.accent=a;localStorage.setItem('kinema_acc',a);save()}
 function exportJSON(){const b=new Blob([JSON.stringify(LIST,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='kinema-liste.json';a.click();URL.revokeObjectURL(a.href)}
 function importJSON(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const arr=JSON.parse(r.result);if(!Array.isArray(arr))throw 0;let n=0;
   arr.forEach(x=>{if(x&&typeof x.key==='string'&&typeof x.title==='string'&&!inList(x.key)){LIST.push({key:x.key,type:x.type==='tv'?'tv':'movie',id:x.id,title:x.title.slice(0,200),cover:/^https:\/\//.test(x.cover||'')?x.cover:'',genres:Array.isArray(x.genres)?x.genres.slice(0,5):[],year:x.year,
   status:ST[x.status]?x.status:'planned',rating:Math.min(5,Math.max(0,+x.rating||0)),watched:Array.isArray(x.watched)?x.watched.filter(Number.isInteger):[],totalEps:+x.totalEps||0,runtime:+x.runtime||0,addedAt:+x.addedAt||Date.now()});n++}});
   save();toast(n+' titre(s) importé(s)');rProfile()}catch(e){toast('Fichier invalide')}};r.readAsText(f)}
-route();
+
+/* ===== DÉMARRAGE (appelé après connexion Firebase) ===== */
+window.startApp=function(data){
+  LIST=Array.isArray(data.list)?data.list:[];
+  if(data.tmdb)localStorage.setItem('kinema_tmdb',data.tmdb);
+  if(data.accent){localStorage.setItem('kinema_acc',data.accent);document.documentElement.dataset.accent=data.accent}
+  window.APP_ON=true;route();
+};
 </script>
 </body>
 </html>
