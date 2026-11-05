@@ -434,9 +434,103 @@ textarea.f{resize:vertical;min-height:70px}
  .ml-grid,.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}.ml-card,.card{min-width:0}.ml-wrap{padding:20px 14px}.ml-hero{padding:24px 14px}.ml-t{font-size:2.2rem}.ml-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.ml-stat{min-width:0;padding:9px 5px}.ml-stat b{font-size:1rem}.ml-stat span{font-size:.48rem;letter-spacing:0}.ml-tools{min-width:0;max-width:100%;flex-wrap:wrap}.ml-search{max-width:100%}.ml-big{display:none}
  #p-detail .dh{display:block;width:100%;min-height:0}#p-detail .dhc{width:100%;max-width:none;margin:0;display:grid;grid-template-columns:100px minmax(0,1fr);padding:72px 14px 30px;gap:16px;text-align:left}#p-detail .dhc>img{width:100px;transform:none}#p-detail .dhc>div{min-width:0;width:100%}#p-detail .dt{font-size:1.5rem;overflow-wrap:anywhere}#p-detail .back{top:14px;left:14px}#p-detail .stamp{display:none}#p-detail .hm{justify-content:flex-start}#p-detail .dstats{margin:0;padding:14px;width:100%;grid-template-columns:repeat(2,minmax(0,1fr))}#p-detail .db{width:100%;padding:20px 14px;grid-template-columns:minmax(0,1fr)}.db>*{min-width:0}#p-detail .dnav{top:60px;width:100%}.browse-controls{display:flex;flex-wrap:wrap;gap:7px}.browse-controls select.f{flex:1 1 140px;min-width:0;font-size:16px}#search-suggestions{right:0;width:calc(100vw - 28px)}.row{scrollbar-width:thin}
 }
+
+/* ===== AJOUTS : boutons .mb, synopsis, aide ===== */
+.mb{padding:7px 12px;border:2px solid var(--ink);background:var(--surface2);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.mb:hover{background:var(--hl);color:#15131a}
+.syn{white-space:pre-line}
+.pill[role=button]{cursor:pointer}.pill[role=button]:hover{background:var(--hl);color:#15131a}
+textarea.f#tnote{min-height:84px;font-size:.84rem;line-height:1.5}
+.mbx:focus{outline:0}
+
+/* ---------- Visite guidée ---------- */
+.kkt{position:fixed;inset:0;z-index:9500}
+.kkt-hole{position:fixed;border:3px solid var(--hl);box-shadow:0 0 0 9999px rgba(5,4,8,.82);pointer-events:none;transition:left .28s,top .28s,width .28s,height .28s}
+.kkt-hole.none{border-color:transparent}
+.kkt-card{position:fixed;z-index:2;width:min(390px,calc(100vw - 24px));background:var(--surface);border:2px solid var(--ink);border-top:5px solid var(--ac);box-shadow:6px 6px 0 var(--ac);padding:16px 18px 14px;animation:fi .2s}
+.kkt-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.kkt-n{font-size:.68rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.kkt-x{width:28px;height:28px;border:2px solid var(--ink);font-weight:800;font-size:.72rem}.kkt-x:hover{background:#e0524f}
+.kkt-card h3{font-family:var(--serif);font-size:1.12rem;line-height:1.2;margin-bottom:8px;font-weight:400}
+.kkt-card p{font-size:.86rem;line-height:1.65;color:var(--text);opacity:.92}
+.kkt-card p b{color:var(--hl)}
+.kkt-dots{display:flex;gap:4px;margin:14px 0 12px;flex-wrap:wrap}
+.kkt-dots i{width:14px;height:5px;background:var(--ink)}.kkt-dots i.on{background:var(--ac);width:26px}.kkt-dots i.past{background:rgba(var(--rgb),.5)}
+.kkt-btns{display:flex;gap:8px;align-items:center}
+.kkt-btns .sp{flex:1}
+.kkt-b{padding:9px 14px;border:2px solid var(--ink);background:var(--surface2);font-weight:800;font-size:.76rem}
+.kkt-b:hover{background:var(--surface3)}
+.kkt-b.go{background:var(--ac);color:#fff;box-shadow:3px 3px 0 var(--ink)}
+.kkt-b.skip{border-color:transparent;background:none;color:var(--muted);text-decoration:underline;padding-left:0}
+.kkt-b[disabled]{opacity:.35;pointer-events:none}
+.kkt-card kbd,table.kkh-k kbd,.guide kbd{border:2px solid var(--ink);padding:0 6px;font-size:.72rem;background:var(--surface3);color:var(--text)}
+
+/* ---------- Centre d'aide ---------- */
+.mbx.help{max-width:820px}
+.kkh-search{width:100%;padding:11px 14px;background:var(--surface2);border:2px solid var(--ink);margin-bottom:14px;font-size:.88rem}
+.kkh-search:focus{outline:0;box-shadow:3px 3px 0 var(--ac)}
+.kkh-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.kkh-tab{padding:8px 14px;border:2px solid var(--ink);background:var(--surface);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
+.kkh-tab:hover{background:var(--surface3)}.kkh-tab.on{background:var(--hl);color:#15131a}
+.kkh-p{display:none}.kkh-p.on{display:block}
+.kkh-cur{padding:12px 16px;margin-bottom:12px;border:2px solid var(--ac);border-left-width:6px;background:var(--surface2)}
+.kkh-cur b{font-family:var(--serif);font-weight:400;font-size:1.1rem}.kkh-cur p{font-size:.84rem;line-height:1.6;color:var(--muted);margin-top:4px}
+.kkh-hero{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:16px 18px;margin-bottom:18px;background:var(--surface2);border:2px solid var(--ac);box-shadow:5px 5px 0 var(--ac)}
+.kkh-hero p{flex:1;min-width:220px;font-size:.86rem;line-height:1.6}
+.kkh-step{display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed var(--ink)}
+.kkh-num{width:34px;height:34px;display:grid;place-items:center;background:var(--hl);color:#15131a;font-family:var(--serif);border:2px solid var(--ink);flex-shrink:0}
+.kkh-step b{display:block;font-size:.92rem;margin-bottom:3px}
+.kkh-step span,.kkh-tip span{font-size:.82rem;line-height:1.6;color:var(--muted)}
+.kkh-tip span b{color:var(--text)}
+.kkh-st{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-bottom:10px}
+.kkh-st>div{display:flex;gap:10px;padding:10px 12px;border:2px solid var(--ink);background:var(--surface2)}
+.kkh-st i{width:11px;height:11px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.kkh-st b{display:block;font-size:.84rem;margin-bottom:2px}.kkh-st span{font-size:.78rem;line-height:1.5;color:var(--muted)}
+.kkh-pages{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.kkh-pg{text-align:left;padding:12px 14px;border:2px solid var(--ink);background:var(--surface2);transition:transform .12s,box-shadow .12s}
+.kkh-pg:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ac)}
+.kkh-pg b{display:block;font-size:.9rem;margin-bottom:4px}.kkh-pg span{font-size:.76rem;color:var(--muted);line-height:1.5;display:block}
+.kkh-tip{display:flex;gap:12px;padding:10px 12px;border:2px solid var(--ink);background:var(--surface2);margin-bottom:8px;align-items:flex-start}
+.kkh-tip i{font-style:normal;font-size:1.2rem;min-width:24px;text-align:center}
+.kkh-tag{display:inline-block;font-size:.58rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--surface3);border:1.5px solid var(--ink);padding:1px 7px;margin-right:8px;color:var(--muted);vertical-align:2px}
+table.kkh-k{width:100%;border-collapse:collapse;font-size:.82rem}
+table.kkh-k td{padding:9px 6px;border-bottom:1px dashed var(--ink);vertical-align:top}
+table.kkh-k td:first-child{white-space:nowrap;width:1%;padding-right:18px}
+details.kkh-q{border:2px solid var(--ink);background:var(--surface2);margin-bottom:8px}
+details.kkh-q summary{padding:11px 14px;font-weight:800;font-size:.84rem;cursor:pointer}
+details.kkh-q[open] summary{border-bottom:1px dashed var(--ink)}
+details.kkh-q div{padding:10px 14px 12px;font-size:.82rem;line-height:1.7;color:var(--muted)}
+details.kkh-q div b{color:var(--text)}
+.kkh-foot{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;padding-top:14px;border-top:2px solid var(--ink)}
+.kkh .mb{margin-left:4px}
+
+/* ---------- Checklist de démarrage ---------- */
+.kkc{background:var(--surface);border:2px solid var(--ink);border-left:6px solid var(--hl);padding:16px 18px;margin-bottom:28px;box-shadow:5px 5px 0 var(--ink)}
+.kkc-h{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.kkc-h b{font-family:var(--serif);font-weight:400;font-size:1.05rem}
+.kkc-h em{font-style:normal;background:var(--hl);color:#15131a;border:2px solid var(--ink);padding:0 9px;font-size:.72rem;font-weight:800}
+.kkc-h .mb{margin-left:auto}
+.kkc-bar{height:10px;border:2px solid var(--ink);background:var(--surface3);overflow:hidden;margin-bottom:12px}.kkc-bar i{display:block;height:100%;background:var(--green)}
+.kkc-l{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:6px}
+.kkc-i{display:flex;align-items:center;gap:10px;text-align:left;padding:9px 12px;border:2px solid var(--ink);background:var(--surface2);font-size:.8rem;font-weight:600}
+.kkc-i:hover{border-color:var(--ac)}
+.kkc-i s{width:20px;height:20px;border:2px solid var(--ink);display:grid;place-items:center;font-size:.7rem;text-decoration:none;color:transparent;flex-shrink:0}
+.kkc-i.done{opacity:.6}.kkc-i.done span{text-decoration:line-through}
+.kkc-i.done s{background:var(--green);border-color:var(--green);color:#04201e}
+.kkc-f{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+
+/* ---------- Astuce contextuelle ---------- */
+#kk-tip{position:fixed;left:22px;bottom:22px;z-index:99990;width:min(350px,calc(100vw - 44px));background:var(--surface);border:2px solid var(--ink);border-left:6px solid var(--hl);box-shadow:5px 5px 0 var(--ink);padding:12px 14px;animation:fi .25s}
+#kk-tip b{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--hl);margin-bottom:4px}
+#kk-tip p{font-size:.82rem;line-height:1.55;margin-bottom:10px}
+#kk-tip .r{display:flex;gap:6px;flex-wrap:wrap}
+#kk-tip .mb{padding:6px 9px;font-size:.64rem;letter-spacing:.03em}
+@media(max-width:900px){#kk-tip{left:12px;bottom:72px}.kkh-tab{padding:7px 10px}.mbx.help .bd2{padding:14px 14px}}
+
 </style>
 </head>
 <body>
+<noscript><p style="padding:40px;text-align:center;font-family:sans-serif">Kinéma a besoin de JavaScript pour fonctionner.</p></noscript>
 <div id="prog"></div><canvas id="confetti"></canvas>
 <div id="auth">
   <div class="abox">
@@ -465,14 +559,14 @@ textarea.f{resize:vertical;min-height:70px}
     <a class="lk" href="#schedule" data-p="schedule">Planning</a><a class="lk" href="#mylist" data-p="mylist">Ma liste</a><a class="lk" href="#profile" data-p="profile">Profil</a>
   </div>
   <div class="sbox"><input id="nav-q" placeholder="Rechercher… ( / )" aria-label="Rechercher un film ou une série" autocomplete="off" aria-controls="search-suggestions" aria-expanded="false"><div id="search-suggestions" role="region" aria-label="Suggestions de recherche" hidden></div></div>
-  <button class="ib" onclick="openGuide()" title="Guide du site" aria-label="Guide du site">?</button>
+  <button class="ib" onclick="openGuide()" title="Aide et visite guidée" aria-label="Aide et visite guidée">?</button>
 </nav>
 <main class="main">
   <div class="page" id="p-home"></div><div class="page" id="p-films"></div><div class="page" id="p-series"></div><div class="page" id="p-catalogue"></div><div class="page" id="p-schedule"></div>
   <div class="page" id="p-mylist"></div><div class="page" id="p-profile"></div><div class="page" id="p-detail"></div>
 </main>
 <nav class="bnav" aria-label="Navigation mobile">
-  <a href="#home" data-p="home">Accueil</a><a href="#films" data-p="films">Films</a><a href="#series" data-p="series">Séries</a><a href="#catalogue" data-p="catalogue">Explorer</a><a href="#mylist" data-p="mylist">Liste</a><a href="#profile" data-p="profile">Profil</a>
+  <a href="#home" data-p="home"><span aria-hidden="true">🏠</span>Accueil</a><a href="#films" data-p="films"><span aria-hidden="true">🎬</span>Films</a><a href="#series" data-p="series"><span aria-hidden="true">📺</span>Séries</a><a href="#catalogue" data-p="catalogue"><span aria-hidden="true">🧭</span>Explorer</a><a href="#schedule" data-p="schedule"><span aria-hidden="true">📡</span>Planning</a><a href="#mylist" data-p="mylist"><span aria-hidden="true">📚</span>Liste</a><a href="#profile" data-p="profile"><span aria-hidden="true">👤</span>Profil</a>
 </nav>
 <button class="totop" id="totop" aria-label="Haut de page" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div id="modals"></div>
@@ -592,7 +686,8 @@ onAuthStateChanged(auth, async user => {
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const strip=h=>(h||'').replace(/<[^>]+>/g,'').trim();
+const strip=h=>decHtml((h||'').replace(/<\/p>\s*<p[^>]*>/gi,'\n').replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,'')).trim();
+const safeUrl=u=>/^https?:\/\//i.test(u||'')?u:'';
 const FALLBACK="data:image/svg+xml,"+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='300' height='450'><rect width='300' height='450' fill='#1b1b24'/><text x='150' y='230' fill='#8b8896' font-size='20' text-anchor='middle' font-family='sans-serif'>Pas d'affiche</text></svg>");
 function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;$('#toasts').appendChild(t);setTimeout(()=>t.remove(),3200)}
 const ST={planned:['À voir','#7aa2ff'],watching:['En cours','#b79bff'],completed:['Terminé','#3fe0a0'],dropped:['Abandonné','#e0524f']};
@@ -607,13 +702,19 @@ function kkConfirm(title,text,yes='Confirmer'){return new Promise(res=>{
   bg.addEventListener('click',e=>{if(e.target===bg)done(false)});bg.querySelector('.no').onclick=()=>done(false);bg.querySelector('.yes').onclick=()=>done(true);
   document.addEventListener('keydown',onk);document.body.appendChild(bg);bg.querySelector('.no').focus()})}
 window.kkConfirm=kkConfirm;
-function openModal(title,html,cls=''){closeModal();const o=document.createElement('div');o.className='mov';o.id='mov';
-  o.innerHTML=`<div class="mbx ${cls}" role="dialog" aria-modal="true"><header><span>${title}</span><button class="ib" aria-label="Fermer" onclick="closeModal()">✕</button></header><div class="bd2">${html}</div></div>`;
-  o.addEventListener('mousedown',e=>{if(e.target===o)closeModal()});$('#modals').appendChild(o);return o}
-function closeModal(){$('#modals').innerHTML=''}
+let _opener=null;
+function openModal(title,html,cls=''){hideTip();const prev=document.activeElement;closeModal(true);if(prev&&prev!==document.body&&!prev.closest('#modals'))_opener=prev;const o=document.createElement('div');o.className='mov';o.id='mov';
+  o.innerHTML=`<div class="mbx ${cls}" role="dialog" aria-modal="true" aria-label="${esc(strip(title))}" tabindex="-1"><header><span>${title}</span><button class="ib" aria-label="Fermer" onclick="closeModal()">✕</button></header><div class="bd2">${html}</div></div>`;
+  o.addEventListener('mousedown',e=>{if(e.target===o)closeModal()});
+  o.addEventListener('keydown',e=>{if(e.key!=='Tab')return;const f=[...o.querySelectorAll('button,[href],input,select,textarea,summary,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.disabled&&x.offsetParent!==null);if(!f.length)return;
+    const a=f[0],z=f[f.length-1];if(e.shiftKey&&(document.activeElement===a||document.activeElement===o.firstChild)){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}});
+  $('#modals').appendChild(o);const bx=o.firstElementChild;if(bx)bx.focus({preventScroll:true});return o}
+function closeModal(keep){const had=$('#modals').innerHTML;$('#modals').innerHTML='';
+  if(!keep&&had&&_opener){const p=_opener;_opener=null;if(document.contains(p)){try{p.focus({preventScroll:true})}catch(e){}}}}
 
 /* ===== ÉTAT + SAUVEGARDE CLOUD ===== */
-const DEF_PROFILE={bio:'',mood:'',top3:[],emoji:'🎬',density:'normal',pattern:'lines',accent:'ai',autoTr:false};
+const DEF_PROFILE={bio:'',mood:'',top3:[],emoji:'🎬',density:'normal',pattern:'lines',accent:'ai',autoTr:false,tourDone:false};
+const sj=o=>JSON.stringify(o,(k,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.entries(v).sort(([a],[b])=>a<b?-1:a>b?1:0)):v);
 let LIST=[],PROFILE={...DEF_PROFILE},ver=0,savedVer=0,_st=null,lastSync=null;
 const payload=()=>({list:LIST,tmdb:localStorage.getItem('kinema_tmdb')||'',accent:PROFILE.accent,profile:PROFILE});
 function setSync(s){const e=$('#sync');if(!e)return;e.className='sync '+(s==='ok'?'':s);e.textContent=s==='ok'?'☁':s==='wait'?'⏳':'⚠';e.title=s==='ok'?'Tout est enregistré':s==='wait'?'Enregistrement…':'Échec de la sauvegarde (vérifie ta connexion)'}
@@ -631,7 +732,11 @@ document.addEventListener('visibilitychange',async()=>{
   if(document.visibilityState==='hidden'){flushSave();return}
   if(window.APP_ON&&ver===savedVer&&window.cloudLoad){
     try{const d=await window.cloudLoad();
-      if(ver===savedVer&&JSON.stringify(d.list||[])!==JSON.stringify(LIST)){LIST=d.list||[];toast('Liste synchronisée');route2()}
+      if(ver===savedVer){let ch=false;
+        if(sj(d.list||[])!==sj(LIST)){LIST=Array.isArray(d.list)?d.list:[];ch=true}
+        const np={...DEF_PROFILE,...(d.profile||{})};
+        if(d.profile&&sj(np)!==sj(PROFILE)){PROFILE=np;applyLook();ch=true}
+        if(ch){toast('Données synchronisées');route2()}}
       lastSync=new Date()}catch(e){}
   }
 });
@@ -662,7 +767,7 @@ async function cached(name,fn,days=3){
 const TVM='https://api.tvmaze.com';
 function normTV(s){return{key:'tv:'+s.id,type:'tv',id:s.id,lang:'en',title:s.name,cover:s.image?.original||s.image?.medium||'',score:s.rating?.average||null,
   year:(s.premiered||'').slice(0,4),genres:(s.genres||[]).map(g=>GFR[g]||g),synopsis:strip(s.summary),status:s.status,network:s.network?.name||s.webChannel?.name||'',
-  runtime:s.averageRuntime||s.runtime||45,url:s.officialSite||s.url}}
+  runtime:s.averageRuntime||s.runtime||45,url:safeUrl(s.officialSite)||safeUrl(s.url)}}
 async function tvAiring(off=0){
   const d=isoDay(off);
   const rs=await Promise.allSettled([getJSON(`${TVM}/schedule/web?date=${d}`),getJSON(`${TVM}/schedule?country=US&date=${d}`),getJSON(`${TVM}/schedule?country=FR&date=${d}`)]);
@@ -677,11 +782,20 @@ async function tvOnAir(){
 const FAM_TV=['Breaking Bad','Game of Thrones','Stranger Things','The Boys','Better Call Saul','Peaky Blinders','The Last of Us','Dark','Money Heist','Squid Game','The Witcher','Wednesday','House of the Dragon','The Mandalorian','Sherlock','Friends','The Office','Narcos','Black Mirror','Vikings','Chernobyl','True Detective','Succession','The Walking Dead','Dexter','Lucifer','Arcane','Fallout','Severance','The Bear','Ozark','Mindhunter','Prison Break','The Big Bang Theory','How I Met Your Mother','Lupin','Peacemaker','Loki','The Crown','Narcos: Mexico','Mr. Robot','Westworld','Hannibal','Fargo','Gotham','Daredevil','Invincible','Rick and Morty','Attack on Titan','Death Note'];
 async function tvPopularNow(){
   return cached('famtv2',async()=>{
-    const out=[];
-    for(let i=0;i<FAM_TV.length;i+=8){
-      const rs=await Promise.allSettled(FAM_TV.slice(i,i+8).map(n=>getJSON(`${TVM}/singlesearch/shows?q=${encodeURIComponent(n)}`)));
-      rs.forEach(r=>{if(r.status==='fulfilled'&&r.value&&r.value.image)out.push(normTV(r.value))});
-      await sleep(700);
+    const out=[],seen=new Set();let todo=[...FAM_TV];
+    for(let pass=0;pass<3&&todo.length;pass++){
+      const failed=[];
+      for(let i=0;i<todo.length;i+=8){
+        const chunk=todo.slice(i,i+8);
+        const rs=await Promise.allSettled(chunk.map(n=>getJSON(`${TVM}/singlesearch/shows?q=${encodeURIComponent(n)}`)));
+        rs.forEach((r,j)=>{
+          if(r.status==='fulfilled'){const v=r.value;if(v&&v.image&&!seen.has(v.id)){seen.add(v.id);out.push(normTV(v))}}
+          else if(!/404/.test(r.reason&&r.reason.message))failed.push(chunk[j]);
+        });
+        if(pass===0&&i===0&&!out.length&&failed.length===chunk.length)return out;
+        await sleep(700);
+      }
+      todo=failed;if(todo.length)await sleep(1500);
     }
     return out;
   },7);
@@ -698,7 +812,7 @@ const ITU='https://itunes.apple.com';
 const big=u=>(u||'').replace(/\d+x\d+(bb)?\./,'600x900bb.');
 function normIT(m){return{key:'it:'+m.trackId,type:'movie',id:m.trackId,lang:'fr',title:m.trackName,cover:big(m.artworkUrl100),score:null,year:(m.releaseDate||'').slice(0,4),
   genres:m.primaryGenreName?[m.primaryGenreName]:[],synopsis:m.longDescription||m.shortDescription||'',director:m.artistName,runtime:m.trackTimeMillis?Math.round(m.trackTimeMillis/60000):null,
-  preview:m.previewUrl,url:m.trackViewUrl,rating:m.contentAdvisoryRating}}
+  preview:safeUrl(m.previewUrl),url:safeUrl(m.trackViewUrl),rating:m.contentAdvisoryRating}}
 const TMI='https://image.tmdb.org/t/p/';
 const GENRE_TM={28:'Action',12:'Aventure',16:'Animation',35:'Comédie',80:'Policier',99:'Documentaire',18:'Drame',10751:'Famille',14:'Fantastique',36:'Histoire',27:'Horreur',10402:'Musique',9648:'Mystère',10749:'Romance',878:'Science-fiction',53:'Thriller',10752:'Guerre',37:'Western'};
 const GID=Object.fromEntries(Object.entries(GENRE_TM).map(([k,v])=>[v,k]));
@@ -746,7 +860,7 @@ async function movDetail(key){
     n.cast=(m.credits?.cast||[]).slice(0,12).map(c=>({name:c.name,role:c.character,img:c.profile_path?TMI+'w185'+c.profile_path:''}));
     const vs=m.videos?.results||[];
     const v=vs.find(v=>v.site==='YouTube'&&v.type==='Trailer'&&v.iso_639_1==='fr')||vs.find(v=>v.site==='YouTube'&&v.type==='Trailer');
-    n.trailer=v?'https://www.youtube-nocookie.com/embed/'+v.key:null;
+    n.trailer=v&&/^[\w-]{5,20}$/.test(v.key)?'https://www.youtube-nocookie.com/embed/'+v.key:null;
     n.collection=m.belongs_to_collection?.id||null;n.collName=m.belongs_to_collection?.name||'';
     n.director=(m.credits?.crew||[]).find(c=>c.job==='Director')?.name;return n}
   const r=await getJSON(`${ITU}/lookup?id=${id}&country=fr`);return normIT(r.results[0]);
@@ -768,8 +882,8 @@ function quickAdd(key){
   document.querySelectorAll('.card[data-k]').forEach(c=>{if(c.dataset.k!==key)return;c.querySelector('.qa')?.remove();
     if(!c.querySelector('.inl'))c.insertAdjacentHTML('afterbegin',`<div class="inl" style="background:${ST.planned[1]}">À voir</div>`)});
 }
-function add(a,status='planned'){if(inList(a.key))return;LIST.push({key:a.key,type:a.type,id:a.id,title:a.title,cover:a.cover,genres:a.genres||[],year:a.year,status,rating:0,watched:[],totalEps:a.totalEps||0,runtime:a.runtime||(a.type==='tv'?45:110),addedAt:Date.now()});save()}
-function keyBox(){return TMDB()?'':`<div class="keybox"><p><b>Pour avoir les vrais films populaires</b> (tendances, notes, genres, bandes-annonces), colle ta clé TMDB gratuite : <a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">themoviedb.org/settings/api</a> (« API Key », pas le « Read Access Token »). Elle sera enregistrée dans ton compte.</p>
+function add(a,status='planned'){if(inList(a.key))return;LIST.push({key:a.key,type:a.type,id:a.id,title:a.title,cover:a.cover,genres:a.genres||[],year:a.year,status,rating:0,watched:[],totalEps:a.totalEps||0,runtime:a.runtime||(a.type==='tv'?45:110),addedAt:Date.now(),lastAt:Date.now()});save()}
+function keyBox(){return TMDB()?'':`<div class="keybox"><p><b>Pour avoir les vrais films populaires</b> (tendances, notes, genres, bandes-annonces), colle ta clé TMDB gratuite : <a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">themoviedb.org/settings/api</a> (« API Key », pas le « Read Access Token »). Elle sera enregistrée dans ton compte. <button class="mb" onclick="openHelp(HT.faq,1)">Comment l'obtenir ?</button></p>
   <input id="kk" aria-label="Clé API TMDB" placeholder="Clé API TMDB (32 caractères)"><button class="btn" onclick="setKey($('#kk').value)">Activer</button></div>`}
 async function setKey(v){v=(v||'').trim();if(v&&!/^[a-f0-9]{32}$/i.test(v)){toast('Clé invalide : 32 caractères (API Key v3)');return}
   v?localStorage.setItem('kinema_tmdb',v):localStorage.removeItem('kinema_tmdb');
@@ -799,7 +913,7 @@ function route(){
   clearInterval(heroT);mlCloseMenu();
   let page=h.split('/')[0];if(!PAGES.includes(page))page='home';
   $('#p-'+(page==='item'?'detail':page)).classList.add('on');
-  document.querySelectorAll('.lk,.bnav a').forEach(l=>l.classList.toggle('on',l.dataset.p===page));
+  document.querySelectorAll('.lk,.bnav a').forEach(l=>{const on=l.dataset.p===page;l.classList.toggle('on',on);on?l.setAttribute('aria-current','page'):l.removeAttribute('aria-current')});
   if(page!=='item')document.title='Kinéma — Tes films et séries';
   window.scrollTo(0,0);
   ({home:rHome,films:rFilms,series:rSeries,catalogue:rCat,schedule:rSched,mylist:rList,profile:rProfile,item:()=>rDetail(h.slice(5))})[page]();
@@ -816,8 +930,8 @@ function contCard(l){const tot=l.totalEps||0,pct=tot?Math.min(100,Math.round(l.w
   return`<div class="cc" role="link" tabindex="0" onkeydown="if(event.key==='Enter')this.click()" onclick="location.hash='#item/${esc(l.key)}'"><img src="${esc(l.cover||FALLBACK)}" alt="" loading="lazy"><div class="b"><div class="ct" style="min-height:0">${esc(l.title)}</div><div class="cs">${l.type==='tv'?`${l.watched.length}${tot?' / '+tot:''} ép.`:'En cours'}</div><div class="bar" style="height:8px;margin:7px 0"><i style="width:${pct}%"></i></div></div>${l.type==='tv'?`<button class="mb" style="flex:0 0 auto" aria-label="Épisode suivant vu" onclick="event.stopPropagation();incEp('${esc(l.key)}')">+1</button>`:''}</div>`}
 function fillCont(){
   const box=$('#cont');if(!box)return;
-  const w=LIST.filter(x=>x.status==='watching').sort((a,b)=>b.addedAt-a.addedAt).slice(0,12);
-  box.innerHTML=w.length?`<div class="sec"><div class="sh"><span class="st">Continuer à regarder</span><a class="more" href="#mylist">Ma liste →</a></div><div class="row">${w.map(contCard).join('')}</div></div>`:'';
+  const w=LIST.filter(x=>x.status==='watching').sort((a,b)=>(b.lastAt||b.addedAt)-(a.lastAt||a.addedAt)).slice(0,12);
+  box.innerHTML=chkHTML()+(w.length?`<div class="sec"><div class="sh"><span class="st">Continuer à regarder</span><a class="more" href="#mylist">Ma liste →</a></div><div class="row">${w.map(contCard).join('')}</div></div>`:'');
 }
 async function rHome(){
   const el=$('#p-home');
@@ -831,10 +945,12 @@ async function rHome(){
   const [tv,mv,top,air]=await Promise.allSettled([tvPopularNow(),movRow(0),movRow(2),tvOnAir()]);
   const v=r=>r.status==='fulfilled'?r.value:[];
   fillRow('#r-tv',v(tv).slice(0,36));fillRow('#r-mv',v(mv));fillRow('#r-air',v(air).slice(0,24));fillRow('#r-top',v(top));
-  window.HERO=[...v(tv).slice(0,3),...v(mv).slice(0,3)].filter(a=>a.cover);buildHero();el.dataset.ok=1;
+  window.HERO=[...v(tv).slice(0,3),...v(mv).slice(0,3)].filter(a=>a.cover);buildHero();if(HERO.length)el.dataset.ok=1;
 }
+function retryHome(){const el=$('#p-home');el.dataset.ok='';el.innerHTML='';rHome()}
 function buildHero(){
-  const h=$('#hero');if(!h||!HERO.length)return;
+  const h=$('#hero');if(!h)return;
+  if(!HERO.length){h.style.height='auto';h.innerHTML='<div class="wrap" style="padding-bottom:10px"><div class="empty">Impossible de charger les sélections du moment (connexion ou service indisponible).<br><br><button class="btn" onclick="retryHome()">Réessayer</button></div></div>';return}
   h.innerHTML=HERO.map((a,i)=>{CC[a.key]=a;return`<div class="hs ${i?'':'on'}"><img class="hbg" src="${esc(a.banner||a.cover)}" alt=""><div class="hbg2"></div>
   <div class="hc"><div class="eb">N°${String(i+1).padStart(2,'0')} · ${a.type==='tv'?'Série':'Film'}</div><h1 class="ht">${esc(a.title)}</h1>
   <div class="hm">${a.score?`<span class="pill g">★ ${a.score}</span>`:''}${a.year?`<span class="pill">${esc(a.year)}</span>`:''}${a.genres.slice(0,3).map(g=>`<span class="pill">${esc(g)}</span>`).join('')}</div>
@@ -854,7 +970,6 @@ async function surpriseMe(){
 
 /* ===== FILMS / SÉRIES ===== */
 let filmsToken=0;
-
 const browseStates={films:{type:'movie',q:'',sort:'rel',genre:'',unseen:false},series:{type:'tv',q:'',sort:'rel',genre:'',unseen:false},catalogue:{type:'all',q:'',sort:'rel',genre:'',unseen:false}};
 let cat=browseStates.catalogue,catT=null,browseSeq=0;
 function activeBrowse(){const p=location.hash.slice(1).split('/')[0];return ['films','series'].includes(p)?p:'catalogue'}
@@ -894,8 +1009,8 @@ async function runBrowse(section){
  if(st.sort==='score')out.sort((a,b)=>(b.score||0)-(a.score||0));
  if(st.sort==='year')out.sort((a,b)=>(+b.year||0)-(+a.year||0));
  const errors=rs.flatMap((r,i)=>r.status==='rejected'?[tasks[i].kind+' : service indisponible.']:[]);
- box.innerHTML=`<p class="note">${out.length} résultat(s)${st.q?' pour « '+esc(st.q)+' »':''}${st.unseen?' · jamais vus':''}</p>`+errors.map(e=>`<p role="status" class="note">${esc(e)}</p>`).join('')+grid(out);
- }catch(e){if(seq===browseSeq)box.innerHTML='<div class="empty">Recherche indisponible. Réessaie dans un instant.</div>'}
+ box.innerHTML=`<p class="note">${out.length} résultat(s)${st.q?' pour « '+esc(st.q)+' »':''}${st.unseen?' · jamais vus':''}</p>`+errors.map(e=>`<p role="status" class="note">${esc(e)}</p>`).join('')+(errors.length?`<button class="btn s" onclick="runBrowse('${section}')">Réessayer</button>`:'')+grid(out);
+ }catch(e){if(seq===browseSeq)box.innerHTML=`<div class="empty">Recherche indisponible. <button class="btn s" onclick="runBrowse('${section}')">Réessayer</button></div>`}
 }
 let suggestTimer,suggestSeq=0;
 const navSearch=$('#nav-q'),suggestions=$('#search-suggestions');
@@ -917,6 +1032,7 @@ navSearch.addEventListener('input',()=>{
 });
 navSearch.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();submitNavSearch()}if(e.key==='Escape')closeSuggestions();if(e.key==='ArrowDown'){e.preventDefault();suggestions.querySelector('a,button')?.focus()}});
 document.addEventListener('click',e=>{if(!e.target.closest('.sbox'))closeSuggestions()});
+
 /* ===== PLANNING ===== */
 let sd=0,mineOnly=false;
 async function rSched(){
@@ -1013,21 +1129,24 @@ const dxGo=id=>{const e=document.getElementById(id);if(e)e.scrollIntoView({behav
 async function rDetail(key){
   const el=$('#p-detail');el.innerHTML=spin;
   try{
-    const a=await getItem(key);CC[a.key]=a;const l=inList(a.key);document.title=a.title+' — Kinéma';
+    let a,offline=false;
+    try{a=await getItem(key)}catch(err){const l0=inList(key);if(!l0)throw err;offline=true;
+      a={key:l0.key,type:l0.type,id:l0.id,title:l0.title,cover:l0.cover||'',banner:'',score:null,year:l0.year||'',genres:l0.genres||[],synopsis:'',runtime:l0.runtime||null,totalEps:l0.totalEps||0,episodes:[],cast:[],offline:true,lang:'fr'}}
+    CC[a.key]=a;const l=inList(a.key);if(l&&!offline&&a.type==='tv')syncTotals(l,a);document.title=a.title+' — Kinéma';
     const meta=[a.type==='tv'?'Série':'Film',a.year,a.runtime?a.runtime+' min':'',a.network,a.director].filter(Boolean);
     const stats=a.type==='tv'?[[a.score?'★ '+a.score:'—','Note sur 10'],[a.year||'—','Année'],[a.totalEps||'?','Épisodes'],[a.runtime?a.runtime+' min':'—','Par épisode']]
                               :[[a.score?'★ '+a.score:'—','Note sur 10'],[a.year||'—','Année'],[a.runtime?a.runtime+' min':'—','Durée'],[a.rating||a.genres[0]||'—',a.rating?'Classification':'Genre']];
     el.innerHTML=`<div class="dh"><img class="bg" src="${esc(a.banner||a.cover||FALLBACK)}" alt=""><div class="gr"></div><button class="back" onclick="history.length>1?history.back():location.hash='#home'">← Retour</button>
     ${a.score?`<div class="stamp"><b>${a.score}</b><span>/ 10</span></div>`:''}
     <div class="dhc"><img src="${esc(a.cover||FALLBACK)}" alt="Affiche : ${esc(a.title)}" onerror="this.onerror=null;this.src='${FALLBACK}'"><div><div class="hm">${meta.map(m=>`<span class="pill">${esc(m)}</span>`).join('')}${a.next?`<span class="pill g cd" data-s="${a.next.s}" data-n="${a.next.n}" data-t="${a.next.t}"></span>`:''}</div>
-    <h1 class="dt">${esc(a.title)}</h1><div class="hm">${a.genres.map(g=>`<span class="pill" style="cursor:pointer" onclick="openGenre('${esc(g)}')">${esc(g)}</span>`).join('')}</div>
+    <h1 class="dt">${esc(a.title)}</h1><div class="hm">${a.genres.map(g=>`<span class="pill" role="button" tabindex="0" data-g="${esc(g)}" onkeydown="if(event.key==='Enter')this.click()" onclick="openGenre(this.dataset.g)">${esc(g)}</span>`).join('')}</div>
     <div id="dbtn">${l?'<span class="pill">✓ Dans ta liste</span>':`<button class="btn" onclick="addFromDetail('${esc(a.key)}')">＋ Ajouter à ma liste</button>`}
     ${a.url?` <a class="btn s" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">Source ↗</a>`:''}
     <button class="btn s" onclick="shareItem('${esc(a.key)}')">Copier le lien</button></div></div></div></div>
     <div class="dstats">${stats.map(([v,t])=>`<div class="dstat"><b>${esc(v)}</b><span>${t}</span></div>`).join('')}</div>
     <div class="dnav" id="dnav"><button onclick="dxGo('d-syn')">Synopsis</button>${a.trailer||a.preview?'<button onclick="dxGo(\'d-trl\')">Bande-annonce</button>':''}${a.cast?.length?'<button onclick="dxGo(\'d-cast\')">Distribution</button>':''}${a.type==='tv'?'<button onclick="dxGo(\'d-eps\')">Épisodes</button>':''}<button id="dnSim" style="display:none" onclick="dxGo('d-sim')">Similaires</button></div>
     <div class="db"><div>
-    <section class="dsec" id="d-syn"><div class="synh"><h2 class="pt2">SYNOPSIS</h2><button class="mb" id="trBtn" style="flex:0 0 auto">🌐 Traduire ▾</button></div><p class="syn" id="synP">${esc(a.synopsis||'Aucun synopsis disponible.')}</p><div class="note" id="trNote" style="display:none;margin:-4px 0 0"></div></section>
+    <section class="dsec" id="d-syn"><div class="synh"><h2 class="pt2">SYNOPSIS</h2><button class="mb" id="trBtn" style="flex:0 0 auto">🌐 Traduire ▾</button></div><p class="syn" id="synP">${esc(a.synopsis||'Aucun synopsis disponible.')}</p>${a.offline?'<div class="note" style="color:var(--gold)">⚠ Impossible de charger les détails (connexion ou clé TMDB). Tu peux quand même suivre ta progression.</div>':''}<div class="note" id="trNote" style="display:none;margin:-4px 0 0"></div></section>
     ${a.trailer||a.preview?`<section class="dsec" id="d-trl"><h2 class="pt2">${a.trailer?'BANDE-ANNONCE':'EXTRAIT'}</h2>${a.trailer?`<div style="aspect-ratio:16/9;border:3px solid var(--ink)"><iframe src="${esc(a.trailer)}" title="Bande-annonce" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`:`<video src="${esc(a.preview)}" controls preload="none" style="width:100%;max-width:720px;border:3px solid var(--ink)"></video>`}</section>`:''}
     ${a.cast?.length?`<section class="dsec" id="d-cast"><h2 class="pt2">DISTRIBUTION</h2><div class="cast">${a.cast.map(c=>`<div><img src="${esc(c.img||FALLBACK)}" alt="" loading="lazy"><b>${esc(c.name)}</b><small>${esc(c.role)}</small></div>`).join('')}</div></section>`:''}
     ${a.type==='tv'?`<section class="dsec" id="d-eps"><h2 class="pt2">ÉPISODES</h2><div id="eps"></div></section>`:''}
@@ -1038,6 +1157,13 @@ async function rDetail(key){
   }catch(e){el.innerHTML=`<div class="wrap"><div class="empty">Fiche introuvable (${esc(e.message)}). <br><br><a class="btn" href="#home">Retour</a></div></div>`}
 }
 function shareItem(k){const u=location.origin+location.pathname+'#item/'+k;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast('Lien copié ✓')).catch(()=>prompt('Copie le lien :',u))}
+function syncTotals(l,a){
+  if(!a.totalEps||a.totalEps===l.totalEps)return;
+  const had=l.totalEps||0;l.totalEps=a.totalEps;
+  if(had>0&&a.totalEps>had&&l.status==='completed'&&l.watched.length<a.totalEps){l.status='watching';toast('Nouveaux épisodes : « '+l.title+' » repasse en cours')}
+  save();
+}
+function saveNote(k,v){const l=inList(k);if(!l)return;const t=(v||'').trim().slice(0,500);if(t===(l.note||''))return;l.note=t;save();toast('Avis enregistré ✓')}
 async function loadSimilar(a){
   let saga=[],list=[];
   try{
@@ -1062,10 +1188,11 @@ function renderTrack(a){
   ${a.type==='tv'?`<div class="cs">${w} / ${tot||'?'} épisodes vus</div><div class="bar"><i style="width:${pct}%"></i></div>
   ${nx?`<div class="nextep"><span>Prochain : <b>S${nx.season}E${nx.number}</b></span><button class="mb" style="flex:0 0 auto" onclick="detailNext('${esc(a.key)}')">Vu ✓</button></div>`:(tot?'<div class="nextep"><span>Tout est vu 🎉</span></div>':'')}`:''}
   <div class="cs">Ma note</div><div class="stars" role="radiogroup" aria-label="Note">${[1,2,3,4,5].map(n=>`<span class="star ${l.rating>=n?'on':''}" role="radio" aria-checked="${l.rating>=n}" tabindex="0" onkeydown="if(event.key==='Enter')this.click()" onclick="rate('${esc(a.key)}',${n})">★</span>`).join('')}</div>
+  <div class="cs">Mon avis</div><textarea class="f" id="tnote" maxlength="500" aria-label="Mon avis" placeholder="Ce que tu en as pensé, où tu t'es arrêté…" onchange="saveNote('${esc(a.key)}',this.value)">${esc(l.note||'')}</textarea>
   <button class="mb" style="width:100%" onclick="removeItem('${esc(a.key)}')">Retirer de ma liste</button>`;
 }
 function detailNext(k){const l=inList(k),nx=nextOf(l,CC[k]);if(!nx)return;const was=l.status;l.watched.push(nx.id);autoStatus(l);if(l.status==='completed'&&was!=='completed')confetti();save();renderTrack(CC[k]);renderEps(CC[k])}
-function setStatus(k,s){const l=inList(k);l.status=s;if(s==='completed'){confetti();if(l.type==='tv'&&CC[k]?.episodes)l.watched=CC[k].episodes.map(e=>e.id)}save();renderTrack(CC[k]);if(CC[k].type==='tv')renderEps(CC[k])}
+function setStatus(k,s){const l=inList(k);l.status=s;l.lastAt=Date.now();if(s==='completed'){confetti();if(l.type==='tv'&&CC[k]?.episodes)l.watched=CC[k].episodes.map(e=>e.id)}save();renderTrack(CC[k]);if(CC[k].type==='tv')renderEps(CC[k])}
 function rate(k,n){const l=inList(k);l.rating=l.rating===n?0:n;save();if(CC[k]&&$('#track'))renderTrack(CC[k])}
 async function removeItem(k){
   const l=inList(k);if(!l||!(await kkConfirm('Retirer de ta liste ?',`« ${l.title} » : ta progression (${l.watched.length} ép.) et ta note seront perdues.`,'Oui, retirer')))return;
@@ -1074,7 +1201,7 @@ async function removeItem(k){
 }
 function renderEps(a){
   const box=$('#eps');if(!box)return;const l=inList(a.key),W=new Set(l?l.watched:[]);
-  const seasons={};a.episodes.forEach(e=>(seasons[e.season]=seasons[e.season]||[]).push(e));
+  const seasons={};(a.episodes||[]).forEach(e=>(seasons[e.season]=seasons[e.season]||[]).push(e));
   box.innerHTML=Object.entries(seasons).map(([s,eps])=>{const n=eps.filter(e=>W.has(e.id)).length;
     return`<div class="season"><div class="sth"><span>Saison ${s} <small class="cs">· ${n}/${eps.length}</small></span><button class="mb" style="flex:0 0 auto" onclick="checkSeason('${esc(a.key)}',${s})">${n===eps.length?'Tout décocher':'Tout cocher'}</button></div>
     ${eps.map(e=>`<div class="ep ${W.has(e.id)?'w':''}" tabindex="0" role="checkbox" aria-checked="${W.has(e.id)}" onkeydown="if(event.key==='Enter')this.click()" onclick="toggleEp('${esc(a.key)}',${e.id})"><div class="en">${e.number??'S'}</div><div><b style="font-size:.85rem">${esc(e.name)}</b><div class="cs">${esc(e.airdate||'')}</div></div><div class="ek">✓</div></div>`).join('')}</div>`}).join('')||'<div class="empty">Aucun épisode référencé.</div>';
@@ -1084,7 +1211,7 @@ function toggleEp(k,id){const l=ensure(k);const was=l.status,i=l.watched.indexOf
 function checkSeason(k,s){const l=ensure(k),eps=CC[k].episodes.filter(e=>e.season===s),all=eps.every(e=>l.watched.includes(e.id)),was=l.status;
   if(all)l.watched=l.watched.filter(id=>!eps.some(e=>e.id===id));else eps.forEach(e=>{if(!l.watched.includes(e.id))l.watched.push(e.id)});
   autoStatus(l);if(l.status==='completed'&&was!=='completed')confetti();save();renderTrack(CC[k]);renderEps(CC[k]);toast('Saison '+s+(all?' décochée':' cochée'))}
-function autoStatus(l){const t=l.totalEps||0;if(t&&l.watched.length>=t)l.status='completed';else if(l.watched.length>0&&(l.status==='planned'||l.status==='completed'||l.status==='dropped'))l.status='watching';else if(l.watched.length===0&&l.status==='watching')l.status='planned'}
+function autoStatus(l){l.lastAt=Date.now();const t=l.totalEps||0;if(t&&l.watched.length>=t)l.status='completed';else if(l.watched.length>0&&(l.status==='planned'||l.status==='completed'||l.status==='dropped'))l.status='watching';else if(l.watched.length===0&&l.status==='watching')l.status='planned'}
 
 /* ===== MA LISTE (style Kakusu) ===== */
 let lf={st:'all',type:'all',q:'',sort:'recent',genre:''};
@@ -1111,13 +1238,13 @@ function mlStatusMenu(ev,k){
   if(left<8){left=Math.min(Math.max(8,r.left),W-mw-8);top=r.bottom+6;if(top+mh>H-8)top=r.top-mh-6}
   top=Math.min(Math.max(8,top),H-mh-8);m.style.left=left+'px';m.style.top=top+'px';btn.classList.add('open');window._mlBtn=btn;
 }
-function mlPick(k,s){mlCloseMenu();const l=inList(k);if(!l||l.status===s)return;l.status=s;
-  if(s==='completed'){confetti();if(l.type==='tv'&&l.totalEps&&CC[k]?.episodes)l.watched=CC[k].episodes.map(e=>e.id)}
-  save();toast(l.title+' → '+ST[s][0]);rList()}
+async function mlPick(k,s){mlCloseMenu();const l=inList(k);if(!l||l.status===s)return;l.status=s;l.lastAt=Date.now();
+  if(s==='completed'){confetti();if(l.type==='tv'){try{const eps=await epList(k);if(eps.length)l.watched=eps.map(e=>e.id)}catch(e){toast('Épisodes non synchronisés (réseau) : coche-les depuis la fiche')}}}
+  save();toast(l.title+' → '+ST[s][0]);if(location.hash==='#mylist')rList();else refreshLists()}
 document.addEventListener('mousedown',e=>{if(!e.target.closest('#mlMenu')&&!e.target.closest('.ml-stbtn'))mlCloseMenu()});
 addEventListener('scroll',mlCloseMenu,{passive:true});addEventListener('resize',mlCloseMenu);
 
-async function epList(k){const l=inList(k);let a=CC[k];if(!a||!a.episodes){a=await tvDetail(l.id);CC[k]=a}if(!l.totalEps)l.totalEps=a.totalEps;return a.episodes}
+async function epList(k){const l=inList(k);let a=CC[k];if(!a||!a.episodes||a.offline){a=await tvDetail(l.id);CC[k]=a}if(!l.totalEps)l.totalEps=a.totalEps;return a.episodes}
 async function incEp(k){
   const l=inList(k);if(!l)return;if(l.type!=='tv'){markSeen(k);return}
   try{const eps=await epList(k),nx=eps.find(e=>!l.watched.includes(e.id));
@@ -1132,7 +1259,7 @@ async function decEp(k){
     if(last<0){toast('Déjà à 0 épisode');return}
     l.watched=l.watched.filter(id=>id!==eps[last].id);autoStatus(l);toast(`${l.title} · ${l.watched.length} ép.`);save();refreshLists()}catch(e){toast('Erreur : '+e.message)}
 }
-function markSeen(k){const l=inList(k);if(l.status==='completed'){l.status='planned'}else{l.status='completed';confetti();toast('🎉 '+l.title+' vu !')}save();refreshLists()}
+function markSeen(k){const l=inList(k);l.lastAt=Date.now();if(l.status==='completed'){l.status='planned'}else{l.status='completed';confetti();toast('🎉 '+l.title+' vu !')}save();refreshLists()}
 function refreshLists(){if(location.hash==='#mylist')rList();else if(!location.hash||location.hash==='#home')fillCont()}
 function mlActs(l){
   if(l.type==='movie')return`<button class="ml-btn ml-plus" onclick="event.stopPropagation();markSeen('${esc(l.key)}')">${l.status==='completed'?'Revoir':'Vu ✓'}</button>`;
@@ -1153,7 +1280,10 @@ function mlRow(l){
   <div class="ml-stars ml-rstars" role="radiogroup">${mlStars(l)}</div>
   <div class="ml-racts">${mlActs(l)}<button class="ml-btn" aria-label="Retirer" onclick="event.stopPropagation();removeItem('${esc(l.key)}')">✕</button></div></div>`;
 }
-function rList(){
+let mlQT=null;
+function mlQ(v){lf.q=v;clearTimeout(mlQT);mlQT=setTimeout(()=>rList(true),180)}
+function rList(keepFocus){rListRender();if(keepFocus){const i=$('#lq');if(i){i.focus();const n=i.value.length;try{i.setSelectionRange(n,n)}catch(e){}}}}
+function rListRender(){
   mlCloseMenu();
   const cnt=s=>LIST.filter(x=>s==='all'||x.status===s).length;
   const eps=LIST.reduce((s,x)=>s+(x.type==='tv'?x.watched.length:0),0),films=LIST.filter(x=>x.type==='movie'&&x.status==='completed').length;
@@ -1162,18 +1292,18 @@ function rList(){
   const hours=mins>=60?Math.round(mins/60)+' h':mins+' min';
   const genres=[...new Set(LIST.flatMap(x=>x.genres||[]))].sort();if(lf.genre&&!genres.includes(lf.genre))lf.genre='';
   let items=LIST.filter(x=>(lf.st==='all'||x.status===lf.st)&&(lf.type==='all'||x.type===lf.type)&&(!lf.genre||(x.genres||[]).includes(lf.genre))&&x.title.toLowerCase().includes(lf.q.toLowerCase()));
-  const S={recent:(a,b)=>b.addedAt-a.addedAt,alpha:(a,b)=>a.title.localeCompare(b.title),rating:(a,b)=>b.rating-a.rating,progress:(a,b)=>mlProg(b).pct-mlProg(a).pct};
+  const S={recent:(a,b)=>b.addedAt-a.addedAt,activity:(a,b)=>(b.lastAt||b.addedAt)-(a.lastAt||a.addedAt),alpha:(a,b)=>a.title.localeCompare(b.title),rating:(a,b)=>b.rating-a.rating,progress:(a,b)=>mlProg(b).pct-mlProg(a).pct};
   items.sort(S[lf.sort]);
-  const resume=(lf.st==='all'&&!lf.q&&!lf.genre&&lf.type==='all')?LIST.filter(x=>x.status==='watching').sort((a,b)=>b.addedAt-a.addedAt).slice(0,4):[];
+  const resume=(lf.st==='all'&&!lf.q&&!lf.genre&&lf.type==='all')?LIST.filter(x=>x.status==='watching').sort(S.activity).slice(0,4):[];
   const tabs=[['all','Tous','#ffe14d'],...Object.entries(ST).map(([k,v])=>[k,v[0],v[1]])];
   $('#p-mylist').innerHTML=`<section class="ml-hero"><div class="ml-in"><div><div class="ml-k">Ma collection</div><h1 class="ml-t">Ma liste</h1><p class="ml-sub">${LIST.length?`${LIST.length} titre${LIST.length>1?'s':''} · ${cnt('completed')} terminé${cnt('completed')>1?'s':''} · ${cnt('watching')} en cours`:'Ta collection est vide pour l\'instant.'}</p></div>
   <div class="ml-stats">${[[eps+films,'Épisodes + films vus'],[hours,'Temps regardé'],[avg,'Note moyenne'],[LIST.length,'Titres']].map(([v,l])=>`<div class="ml-stat"><b>${v}</b><span>${l}</span></div>`).join('')}</div></div><div class="ml-big" aria-hidden="true">LISTE</div></section>
   <div class="ml-wrap">
   ${resume.length?`<div class="ml-sech">À reprendre <em>${resume.length}</em></div><div class="ml-res-row">${resume.map(l=>{const p=mlProg(l);return`<div class="ml-res" tabindex="0" onkeydown="if(event.key==='Enter')this.click()" onclick="location.hash='#item/${esc(l.key)}'"><img src="${esc(l.cover||FALLBACK)}" alt="" loading="lazy"><div class="b"><div class="ml-name">${esc(l.title)}</div><div class="ml-meta"><span>${p.txt}</span>${p.t?`<b>${p.pct}%</b>`:''}</div><div class="ml-rbar" style="--st:${ST.watching[1]}"><i style="width:${p.pct}%"></i></div><button class="ml-btn ml-plus" onclick="event.stopPropagation();incEp('${esc(l.key)}')">+1 épisode</button></div></div>`}).join('')}</div>`:''}
   <div class="ml-bar"><div class="ml-tabs">${tabs.map(([k,l,c])=>`<button class="ml-tab ${lf.st===k?'on':''}" onclick="lf.st='${k}';rList()"><i class="ml-dot" style="--c:${c}"></i>${l}<em>${cnt(k)}</em></button>`).join('')}</div>
-  <div class="ml-tools"><label class="ml-search">🔍<input id="lq" aria-label="Filtrer ma liste" placeholder="Filtrer ma liste…" value="${esc(lf.q)}" onchange="lf.q=this.value;rList()"></label>
+  <div class="ml-tools"><label class="ml-search">🔍<input id="lq" aria-label="Filtrer ma liste" placeholder="Filtrer ma liste…" value="${esc(lf.q)}" oninput="mlQ(this.value)"></label>
   <select class="ml-sel" aria-label="Type" onchange="lf.type=this.value;rList()">${[['all','Séries + films'],['tv','Séries'],['movie','Films']].map(([k,l])=>`<option value="${k}" ${lf.type===k?'selected':''}>${l}</option>`).join('')}</select>
-  <select class="ml-sel" aria-label="Tri" onchange="lf.sort=this.value;rList()">${[['recent','Récemment ajouté'],['alpha','Alphabétique'],['rating','Note'],['progress','Progression']].map(([k,l])=>`<option value="${k}" ${lf.sort===k?'selected':''}>${l}</option>`).join('')}</select>
+  <select class="ml-sel" aria-label="Tri" onchange="lf.sort=this.value;rList()">${[['recent','Récemment ajouté'],['activity','Dernière activité'],['alpha','Alphabétique'],['rating','Note'],['progress','Progression']].map(([k,l])=>`<option value="${k}" ${lf.sort===k?'selected':''}>${l}</option>`).join('')}</select>
   ${genres.length?`<select class="ml-sel" aria-label="Genre" onchange="lf.genre=this.value;rList()"><option value="">Tous les genres</option>${genres.map(g=>`<option ${lf.genre===g?'selected':''}>${esc(g)}</option>`).join('')}</select>`:''}
   <div class="ml-view"><button class="${listView!=='compact'?'on':''}" onclick="setView('grid')">Grille</button><button class="${listView==='compact'?'on':''}" onclick="setView('compact')">Liste</button></div>
   <button class="pl" onclick="pickForMe()">🎲 Que regarder ?</button></div></div>
@@ -1236,7 +1366,7 @@ function insights(S){
 function rProfile(){
   const S=kstats(),P=PROFILE;
   const badges=[['🌱','Premier pas','1 titre ajouté',S.total>=1],['📚','Collectionneur','25 titres',S.total>=25],['🏛️','Vidéothèque','100 titres',S.total>=100],['🎬','Marathonien','100 épisodes vus',S.eps>=100],['⚡','Binge-watcher','500 épisodes vus',S.eps>=500],['✅','Complétiste','10 terminés',S.completed>=10],['⭐','Critique','10 notes données',S.rated>=10],['🌙','Nuit blanche','24 h regardées',S.mins>=1440],['🍿','Cinéphile','25 films vus',S.films>=25]];
-  const recent=[...LIST].sort((a,b)=>b.addedAt-a.addedAt).slice(0,5),mx=S.topGenres[0]?.[1]||1;
+  const recent=[...LIST].sort((a,b)=>(b.lastAt||b.addedAt)-(a.lastAt||a.addedAt)).slice(0,5),mx=S.topGenres[0]?.[1]||1;
   const hours=S.mins>=60?Math.round(S.mins/60)+'h':S.mins+'min';
   const top=(P.top3||[]).filter(t=>t&&inList(t.key)).slice(0,3);
   $('#p-profile').innerHTML=`<div class="ph"><div class="ph-bg pat-${['lines','dots','grid','waves','none'].includes(P.pattern)?P.pattern:'lines'}"></div><div class="ph-in">
@@ -1256,6 +1386,7 @@ function rProfile(){
    <div class="pb c6"><div class="pt2">Changer le mot de passe</div><input class="f" id="pw0" type="password" autocomplete="current-password" aria-label="Mot de passe actuel" placeholder="Mot de passe actuel"><input class="f" id="pw1" type="password" autocomplete="new-password" aria-label="Nouveau mot de passe" placeholder="Nouveau mot de passe (6 minimum)"><button class="btn" onclick="doChangePw()">Modifier</button></div>
    <div class="pb c6"><div class="pt2">Mes données</div><button class="btn s" onclick="exportJSON()">Exporter JSON</button> <button class="btn s" onclick="exportCSV()">Exporter CSV</button> <label class="btn s" tabindex="0">Importer<input type="file" accept=".json" hidden onchange="importJSON(this)"></label> <button class="btn s" onclick="doLogout()">Se déconnecter</button>
    <p class="note">Sauvegarde cloud ${lastSync?'· dernière synchro à '+lastSync.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}):'active'}. Pense à exporter un JSON de temps en temps comme copie de secours.</p></div>
+   <div class="pb"><div class="pt2">Aide &amp; visite guidée</div><button class="btn" onclick="openHelp(HT.page)">Centre d'aide</button> <button class="btn s" onclick="kkTour()">▶ Relancer la visite</button> <button class="btn s" onclick="kkTips()">${tipsOff()?'Activer':'Désactiver'} les astuces</button> <button class="btn s" onclick="kkChkShow()">Réafficher la checklist</button><p class="note">La touche <kbd style="border:2px solid var(--ink);padding:0 6px">?</kbd> ouvre aussi l'aide. Utilise <kbd>G</kbd> puis une lettre pour changer de page.</p></div>
   </div>
   <div class="drawer" id="pe" onmousedown="if(event.target===this)closePE()"><div class="dbox" id="peBox"></div></div>`;
 }
@@ -1295,14 +1426,24 @@ function dl(txt,name,type){const b=new Blob([txt],{type}),a=document.createEleme
 function exportJSON(){if(!LIST.length)return toast('Ta liste est vide');dl(JSON.stringify(LIST,null,2),'kinema-liste-'+isoDay()+'.json','application/json');toast('Liste exportée (JSON)')}
 function exportCSV(){
   if(!LIST.length)return toast('Ta liste est vide');
-  const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"',cols=['key','title','type','status','watched','totalEps','rating','year'];
-  const rows=LIST.map(a=>cols.map(c=>q(c==='watched'?a.watched.length:a[c])).join(','));
+  const q=v=>{let t=String(v==null?'':v);if(/^[=+\-@\t\r]/.test(t))t="'"+t;return'"'+t.replace(/"/g,'""')+'"'};
+  const cols=['key','title','type','status','watched','totalEps','rating','year','genres','note'];
+  const val=(a,c)=>c==='watched'?a.watched.length:c==='genres'?(a.genres||[]).join(' / '):a[c];
+  const rows=LIST.map(a=>cols.map(c=>q(val(a,c))).join(','));
   dl('\ufeff'+cols.join(',')+'\n'+rows.join('\n'),'kinema-liste-'+isoDay()+'.csv','text/csv;charset=utf-8');toast('Liste exportée (CSV)');
 }
-function importJSON(i){const f=i.files[0];if(!f)return;if(f.size>5e6){toast('Fichier trop gros');return}const r=new FileReader();r.onload=()=>{try{const arr=JSON.parse(r.result);if(!Array.isArray(arr))throw 0;let n=0;
-  arr.forEach(x=>{if(x&&typeof x.key==='string'&&typeof x.title==='string'&&!inList(x.key)){LIST.push({key:x.key,type:x.type==='tv'?'tv':'movie',id:x.id,title:x.title.slice(0,200),cover:/^https:\/\//.test(x.cover||'')?x.cover:'',genres:Array.isArray(x.genres)?x.genres.slice(0,5):[],year:x.year,
-  status:ST[x.status]?x.status:'planned',rating:Math.min(5,Math.max(0,+x.rating||0)),watched:Array.isArray(x.watched)?x.watched.filter(Number.isInteger):[],totalEps:+x.totalEps||0,runtime:+x.runtime||0,addedAt:+x.addedAt||Date.now()});n++}});
-  save();toast(n+' titre(s) importé(s)');rProfile()}catch(e){toast('Fichier invalide')}};r.readAsText(f)}
+const KEY_RE=/^(tv|tm|it):\d{1,12}$/;
+function importJSON(i){const f=i.files[0];if(!f)return;if(f.size>5e6){toast('Fichier trop gros');i.value='';return}
+  const r=new FileReader();r.onload=()=>{try{
+    const arr=JSON.parse(r.result);if(!Array.isArray(arr))throw 0;let n=0,skip=0;
+    arr.slice(0,5000).forEach(x=>{
+      if(!x||typeof x.key!=='string'||!KEY_RE.test(x.key)||typeof x.title!=='string'||!x.title.trim()){skip++;return}
+      if(inList(x.key))return;
+      LIST.push({key:x.key,type:x.key.startsWith('tv:')?'tv':'movie',id:+x.key.split(':')[1],title:x.title.slice(0,200),cover:/^https:\/\//.test(x.cover||'')?x.cover:'',
+        genres:Array.isArray(x.genres)?x.genres.filter(g=>typeof g==='string').slice(0,5).map(g=>g.slice(0,40)):[],year:String(x.year||'').slice(0,4),
+        status:ST[x.status]?x.status:'planned',rating:Math.min(5,Math.max(0,Math.round(+x.rating||0))),watched:Array.isArray(x.watched)?x.watched.filter(Number.isInteger).slice(0,5000):[],
+        totalEps:Math.max(0,+x.totalEps||0),runtime:Math.max(0,+x.runtime||0),addedAt:+x.addedAt||Date.now(),lastAt:+x.lastAt||+x.addedAt||Date.now(),note:typeof x.note==='string'?x.note.slice(0,500):''});n++});
+    if(n)save();toast(n+' titre(s) importé(s)'+(skip?' · '+skip+' ignoré(s)':''));rProfile()}catch(e){toast('Fichier invalide')}i.value=''};r.readAsText(f)}
 
 /* ===== PALETTE Ctrl+K ===== */
 let palSel=0,palItems=[],palTimer=null;
@@ -1310,7 +1451,7 @@ const PAL_CMDS=()=>[
  {ic:'🏠',t:'Accueil',run:()=>location.hash='#home'},{ic:'🎬',t:'Films',run:()=>location.hash='#films'},{ic:'📺',t:'Séries',run:()=>location.hash='#series'},
  {ic:'🧭',t:'Découvrir',run:()=>location.hash='#catalogue'},{ic:'📡',t:'Planning des sorties',run:()=>location.hash='#schedule'},{ic:'📚',t:'Ma liste',run:()=>location.hash='#mylist'},
  {ic:'👤',t:'Mon profil',run:()=>location.hash='#profile'},{ic:'🎲',t:'Surprends-moi',run:()=>surpriseMe()},{ic:'🍿',t:'Que regarder ce soir ?',run:()=>pickForMe()},
- {ic:'⬇️',t:'Exporter ma liste (JSON)',run:()=>exportJSON()},{ic:'❓',t:'Guide du site',run:()=>openGuide()},{ic:'⏻',t:'Se déconnecter',run:()=>window.doLogout&&window.doLogout()}];
+ {ic:'⬇️',t:'Exporter ma liste (JSON)',run:()=>exportJSON()},{ic:'❓',t:'Centre d\u2019aide',run:()=>openGuide()},{ic:'🧭',t:'Visite guidée',run:()=>startTour()},{ic:'⌨️',t:'Raccourcis clavier',run:()=>openHelp(HT.keys)},{ic:'⏻',t:'Se déconnecter',run:()=>window.doLogout&&window.doLogout()}];
 function openPalette(){
   if(document.getElementById('palov'))return;
   const ov=document.createElement('div');ov.className='mov';ov.id='palov';
@@ -1345,23 +1486,340 @@ async function palSearch(q){
 }
 function runPal(i){const it=palItems[i];if(!it)return;closePalette();it.run()}
 
-/* ===== GUIDE ===== */
-function openGuide(){
-  openModal('Guide du site',`<div class="guide">
-  <h4>Le principe</h4><p>Kinéma est ton carnet privé : tu trouves un film ou une série, tu l'ajoutes à ta liste, tu notes où tu en es. Le site ne diffuse rien.</p>
-  <h4>Navigation</h4><ul><li><b>Accueil</b> : tes séries en cours, les genres, les séries et films du moment.</li><li><b>Films</b> / <b>Séries</b> : des rangées par genre.</li><li><b>Découvrir</b> : recherche, genres, tri par note ou année.</li><li><b>Planning</b> : les épisodes qui sortent cette semaine.</li><li><b>Ma liste</b> : statuts, notes, progression, vue grille ou liste.</li><li><b>Profil</b> : stats, niveau, top 3, succès, personnalisation.</li></ul>
-  <h4>Ma liste</h4><ul><li>Le bouton de statut ouvre un petit menu : À voir, En cours, Terminé, Abandonné.</li><li><b>+1 épisode</b> coche le prochain épisode, <b>−1</b> retire le dernier.</li><li>Les étoiles notent de 1 à 5, un second clic retire la note.</li></ul>
-  <h4>Fiche</h4><ul><li>Le bouton <b>🌐 Traduire</b> traduit le synopsis (français, English, Español, Português, Deutsch, Italiano). L'option « traduire automatiquement » est dans Profil &gt; Personnaliser.</li><li>Pour une série, tu coches les épisodes un par un ou une saison entière.</li></ul>
-  <h4>Raccourcis</h4><ul><li><kbd>/</kbd> aller à la recherche</li><li><kbd>Ctrl</kbd> + <kbd>K</kbd> recherche rapide (pages, commandes, titres)</li><li><kbd>Échap</kbd> fermer une fenêtre ou un menu</li></ul>
-  <h4>Sauvegarde</h4><p>Ta liste est enregistrée dans ton compte (icône ☁ en haut). Exporte un JSON de temps en temps comme copie de secours.</p></div>`);
+/* ===== AIDE : visite guidée · centre d'aide · checklist · astuces ===== */
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const isMobile=()=>innerWidth<=900;
+const pageOf=()=>(decodeURIComponent(location.hash.slice(1))||'home').split('/')[0];
+const normS=s=>String(s||'').replace(/<[^>]+>/g,' ').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+const HT={page:0,start:1,pages:2,tips:3,keys:4,faq:5};
+const HELP_TABS=['Cette page','Démarrer','Les pages','Astuces','Raccourcis','FAQ'];
+
+/* ---------- Visite guidée ---------- */
+const TOUR=[
+ {title:'Bienvenue sur Kinéma 🎬',text:`Kinéma est ton <b>carnet privé de films et séries</b> : tu repères un titre, tu l'ajoutes à ta liste et tu notes où tu en es. Le site ne diffuse rien, il sert à t'organiser.<br><br>La visite dure une minute. Utilise <kbd>←</kbd> <kbd>→</kbd> pour avancer et <kbd>Échap</kbd> pour quitter.`},
+ {hash:'#home',sel:()=>isMobile()?'.bnav':'.links',title:'Le menu',text:`<b>Accueil</b>, <b>Films</b>, <b>Séries</b>, <b>Découvrir</b> (recherche), <b>Planning</b> des sorties, <b>Ma liste</b> et ton <b>Profil</b>. Tout part de là.`},
+ {sel:()=>isMobile()?'.sbox':'#nav-q',title:'La recherche',text:`Tape un titre pour obtenir des suggestions de films et séries. Avec <kbd>Entrée</kbd>, tu arrives dans <b>Découvrir</b> avec les résultats films et séries. Astuce : la touche <kbd>/</kbd> place le curseur ici.`},
+ {hash:'#films',sel:'.browse-controls',title:'Tes filtres',text:`Dans <b>Films</b>, seuls les films sont proposés ; dans <b>Séries</b>, seules les séries. Choisis un genre, un tri et active <b>Jamais vus</b> pour exclure ce que tu as commencé ou terminé dans ta liste.`},
+ {sel:'.navbar .ib[aria-label="Aide et visite guidée"]',title:'Ton aide, toujours là',text:`Le bouton <b>?</b> ouvre le <b>centre d'aide</b> : ce que tu peux faire sur la page où tu es, les astuces, les raccourcis clavier et la FAQ. Tu peux aussi y chercher un mot.`},
+ {hash:'#home',sel:'.tiles',title:'Explorer par genre',text:`Clique sur un genre pour voir les titres correspondants, ou sur <b>🎲 Au hasard</b> pour te laisser surprendre. Plus haut, <b>Continuer à regarder</b> retrouvera tes séries en cours.`},
+ {hash:'#catalogue',sel:'.bigsearch',title:'Découvrir',text:`Cherche, filtre par <b>genre</b>, trie par <b>note</b> ou <b>année</b>. Sur chaque affiche, le bouton <b>+</b> (au survol) l'ajoute à ta liste en un clic, sans ouvrir la fiche.`},
+ {title:`La fiche d'un titre`,text:`Clique sur une affiche pour ouvrir sa fiche : <b>synopsis</b> (bouton 🌐 pour le traduire), <b>bande-annonce</b>, <b>distribution</b>, titres similaires.<br><br>Pour une série, tu <b>coches les épisodes</b> un par un (ou une saison entière) et le site te dit lequel est le prochain. Tu peux aussi écrire <b>ton avis</b>.`},
+ {hash:'#schedule',sel:'.days',title:'Le planning',text:`Les épisodes qui sortent dans les 7 prochains jours. Active <b>« Seulement ma liste »</b> pour ne voir que tes séries.`},
+ {hash:'#mylist',sel:'.ml-hero',title:'Ma liste',text:`Ta collection et tes statistiques : épisodes vus, temps regardé, note moyenne. Tout se met à jour tout seul.`},
+ {hash:'#mylist',sel:'.ml-bar',title:'Trier et suivre',text:`Filtre par statut (<b>À voir</b>, <b>En cours</b>, <b>Terminé</b>, <b>Abandonné</b>), par type ou par genre. Sur chaque carte : clique le statut pour le changer, <b>+1 épisode</b> pour avancer, les <b>étoiles</b> pour noter. <b>🎲 Que regarder ?</b> choisit pour toi.`},
+ {hash:'#profile',sel:'.ph-in',title:'Ton profil',text:`Niveau, XP, top 3, succès, bilan de spectateur… Le bouton <b>Personnaliser</b> change couleur, emoji, bio et taille des affiches. En bas de page : clé TMDB, mot de passe, export et import de tes données.`},
+ {title:'La sauvegarde',text:`Ta liste, ta progression et tes avis sont enregistrés dans ton compte. Tu peux aussi exporter tes données depuis le <b>Profil</b> pour garder une copie de secours. En cas d'échec, le site affiche un avertissement.`},
+ {title:'À toi de jouer 🍿',text:`Ajoute ton premier titre pour démarrer. Le bouton <b>?</b> te redonne l'aide et cette visite à tout moment, et une petite checklist t'attend sur l'accueil.`,last:true}
+];
+let tourI=0,tourOn=false,tourTok=0,tourEl=null;
+function isVis(el){if(!el)return false;const r=el.getBoundingClientRect();return r.width>0&&r.height>0&&getComputedStyle(el).visibility!=='hidden'}
+function waitFor(sel,ms){return new Promise(res=>{const t0=Date.now();(function p(){const el=$(sel);if(isVis(el))return res(el);if(Date.now()-t0>ms)return res(null);setTimeout(p,100)})()})}
+function startTour(from){
+  if(tourOn)return;
+  closeModal();closePalette();hideTip();
+  tourOn=true;
+  const o=document.createElement('div');o.className='kkt';o.id='kkt';
+  o.innerHTML='<div class="kkt-hole none"></div><div class="kkt-card" role="dialog" aria-modal="true" aria-live="polite"></div>';
+  document.body.appendChild(o);
+  addEventListener('keydown',tourKey,true);addEventListener('resize',tourLayout);addEventListener('scroll',tourLayout,{passive:true});
+  tourShow(from||0);
+}
+function tourKey(e){
+  if(!tourOn)return;
+  if(e.key==='Escape'){e.preventDefault();e.stopPropagation();endTour(false)}
+  else if(e.key==='ArrowRight'){e.preventDefault();kkTourGo(1)}
+  else if(e.key==='ArrowLeft'){e.preventDefault();kkTourGo(-1)}
+}
+function kkTourGo(d){const n=tourI+d;if(n<0)return;if(n>=TOUR.length){endTour(true);return}tourShow(n)}
+async function tourShow(i){
+  tourI=i;const s=TOUR[i],my=++tourTok,card=$('.kkt-card');if(!card)return;
+  card.innerHTML=`<div class="kkt-top"><span class="kkt-n">Étape ${i+1} / ${TOUR.length}</span><button class="kkt-x" aria-label="Quitter la visite" onclick="kkTourEnd()">✕</button></div>
+  <h3>${s.title}</h3><p>${s.text}</p>
+  <div class="kkt-dots">${TOUR.map((_,j)=>`<i class="${j===i?'on':j<i?'past':''}"></i>`).join('')}</div>
+  <div class="kkt-btns">${s.last?'':'<button class="kkt-b skip" onclick="kkTourEnd()">Passer</button>'}<span class="sp"></span><button class="kkt-b" ${i?'':'disabled'} onclick="kkTourGo(-1)">←</button><button class="kkt-b go" id="kktNext" onclick="kkTourGo(1)">${s.last?"C'est parti ➜":'Suivant →'}</button></div>`;
+  const nb=$('#kktNext');if(nb)nb.focus({preventScroll:true});
+  if(s.hash&&(location.hash||'#home')!==s.hash)location.hash=s.hash;
+  let el=null;
+  if(s.sel){el=await waitFor(typeof s.sel==='function'?s.sel():s.sel,4500);if(my!==tourTok)return}
+  if(el&&!el.closest('.navbar,.bnav'))el.scrollIntoView({block:'center',behavior:'instant'});
+  tourEl=el;tourLayout();
+  if(el)setTimeout(()=>{if(my===tourTok)tourLayout()},320);
+}
+function tourLayout(){
+  const hole=$('.kkt-hole'),card=$('.kkt-card');if(!hole||!card)return;
+  const el=tourEl;
+  if(!el||!isVis(el)){
+    hole.className='kkt-hole none';hole.style.cssText='left:50%;top:45%;width:0;height:0';
+    card.style.left=Math.max(12,(innerWidth-card.offsetWidth)/2)+'px';card.style.top=Math.max(12,(innerHeight-card.offsetHeight)/2)+'px';return;
+  }
+  const r=el.getBoundingClientRect(),pad=6;
+  hole.className='kkt-hole';
+  hole.style.left=(r.left-pad)+'px';hole.style.top=(r.top-pad)+'px';hole.style.width=(r.width+pad*2)+'px';hole.style.height=(r.height+pad*2)+'px';
+  const cw=card.offsetWidth,ch=card.offsetHeight;
+  let top=r.bottom+pad+14;
+  if(top+ch>innerHeight-12)top=r.top-pad-14-ch;
+  if(top<12)top=Math.max(12,innerHeight-ch-12);
+  card.style.left=Math.min(Math.max(12,r.left+r.width/2-cw/2),innerWidth-cw-12)+'px';card.style.top=top+'px';
+}
+function endTour(finished){
+  if(!tourOn)return;
+  tourOn=false;tourTok++;tourEl=null;
+  removeEventListener('keydown',tourKey,true);removeEventListener('resize',tourLayout);removeEventListener('scroll',tourLayout);
+  const o=$('#kkt');if(o)o.remove();
+  if(!PROFILE.tourDone){PROFILE.tourDone=true;save()}
+  if(finished)location.hash=LIST.length?'#home':'#catalogue';
+  else toast('Visite quittée · relance-la avec le bouton « ? » en haut');
+}
+const kkTour=startTour,kkTourEnd=()=>endTour(false);
+
+/* ---------- Contenu de l'aide ---------- */
+const PAGE_HELP={
+ home:{t:'🏠 Accueil',d:`Ton point de départ : reprends tes séries, explore par genre, repère ce qui passe en ce moment.`,a:[
+  ['▶',`<b>Continuer à regarder</b> liste tes séries « En cours » : le bouton <b>+1</b> coche l'épisode suivant sans ouvrir la fiche.`],
+  ['🖱️',`Clique une affiche pour ouvrir sa fiche. Au survol, le bouton <b>+</b> l'ajoute directement à ta liste.`],
+  ['🎭',`Les <b>tuiles de genre</b> mènent au catalogue filtré ; <b>🎲 Au hasard</b> te propose un titre que tu n'as pas encore.`],
+  ['🖼️',`Le grand bandeau défile tout seul : clique les petits traits en bas pour changer de titre.`],
+  ['✅',`La checklist « Pour bien démarrer » te guide pas à pas. Tu peux la masquer, et la réafficher depuis ton Profil.`]]},
+ films:{t:'🎬 Films',d:`Des rangées de films par genre (tendances, au cinéma, mieux notés, action, horreur…).`,a:[
+  ['🖱️',`Survole une affiche et clique <b>+</b> pour l'ajouter à ta liste, ou clique l'affiche pour ouvrir la fiche.`],
+  ['🔑',`Sans clé TMDB, les films viennent d'iTunes (pas de notes ni de bandes-annonces). Avec ta clé gratuite, tu as les vrais films populaires. <button class="mb" onclick="openHelp(HT.faq,1)">Comment l'obtenir ?</button>`],
+  ['↔️',`Chaque rangée défile à l'horizontale : molette + Maj, glissement tactile ou barre sous les affiches.`]]},
+ series:{t:'📺 Séries',d:`Les séries à l'antenne et les séries cultes, classées par genre.`,a:[
+  ['📡',`« À l'antenne en ce moment » : les séries bien notées qui passent aujourd'hui. Le détail jour par jour est dans <b>Planning</b>.`],
+  ['☑️',`Ouvre une série pour cocher ses épisodes : elle passera toute seule « En cours », puis « Terminé ».`]]},
+ catalogue:{t:'🧭 Découvrir',d:`Le moteur de recherche de Kinéma, pour les films et les séries.`,a:[
+  ['🔍',`Tape un titre : les résultats arrivent au bout d'un instant, films et séries mélangés.`],
+  ['🎚️',`Les boutons <b>Tout / Séries / Films</b>, le menu <b>Genre</b> et le menu <b>Trier</b> (pertinence, note, année) affinent les résultats.`],
+  ['⚡',`Le filtre <b>Jamais vus</b> masque les titres terminés, en cours ou avec des épisodes déjà cochés dans ta liste.`],
+  ['➕',`Le bouton <b>+</b> sur une affiche ajoute le titre à ta liste (statut « À voir »).`]]},
+ schedule:{t:'📡 Planning',d:`Les épisodes qui sortent dans les 7 prochains jours.`,a:[
+  ['📅',`Choisis un jour dans la bande du haut : les heures sont celles de ton fuseau.`],
+  ['📚',`<b>Seulement ma liste</b> ne garde que les séries que tu suis. Sans ça, seules les séries bien notées (7,5+) et les tiennes sont affichées.`],
+  ['🖱️',`Clique une ligne pour ouvrir la fiche de la série.`]]},
+ mylist:{t:'📚 Ma liste',d:`Ta collection : statuts, progression, notes et statistiques.`,a:[
+  ['🏷️',`Les onglets filtrent par statut (<b>À voir, En cours, Terminé, Abandonné</b>) ; un menu filtre par type et genre.`],
+  ['🔎',`Le champ « Filtrer ma liste » cherche dans les titres pendant que tu tapes.`],
+  ['⏯️',`<b>+1 épisode</b> coche le prochain, <b>−1</b> retire le dernier. Pour un film, <b>Vu ✓</b> le marque terminé.`],
+  ['🎚️',`Clique le <b>statut</b> d'une carte pour le changer. Les <b>étoiles</b> notent de 1 à 5 (un second clic retire la note).`],
+  ['↕️',`Trie par ajout, dernière activité, titre, note ou progression. <b>Grille / Liste</b> change l'affichage.`],
+  ['🎲',`<b>Que regarder ?</b> pioche au hasard dans tes « À voir ». Le <b>✕</b> d'une carte la retire de ta liste (avec confirmation).`]]},
+ profile:{t:'👤 Profil',d:`Tes statistiques, ton niveau et les réglages du site.`,a:[
+  ['🎨',`<b>Personnaliser</b> : couleur d'accent, taille des affiches, motif de bannière, emoji, humeur, bio et top 3.`],
+  ['🏆',`Le niveau, l'XP, les succès et le « type de spectateur » se calculent tout seuls à partir de ta liste.`],
+  ['🔑',`<b>Clé TMDB</b> : colle-la ici pour avoir les vrais films populaires (notes, bandes-annonces, distribution).`],
+  ['💾',`<b>Exporter / Importer</b> : copie de secours de ta liste (JSON) ou tableau pour Excel (CSV).`],
+  ['🔒',`Change ton mot de passe ou déconnecte-toi en bas de page.`]]},
+ item:{t:'🎞️ Fiche d’un titre',d:`Tout sur un film ou une série, et ton suivi personnel.`,a:[
+  ['➕',`<b>＋ Ajouter à ma liste</b> le place en « À voir ». Le panneau <b>Ma progression</b> (à droite ou en bas) apparaît alors.`],
+  ['☑️',`Pour une série, clique un épisode pour le cocher, ou <b>Tout cocher</b> pour une saison. <b>Vu ✓</b> valide le prochain épisode.`],
+  ['⭐',`Mets une note (1 à 5) et écris <b>ton avis</b> : il est enregistré avec le titre.`],
+  ['🌐',`<b>Traduire</b> traduit le synopsis (6 langues). Les titres et noms restent en version originale.`],
+  ['🔗',`<b>Copier le lien</b> te donne l'adresse directe de la fiche ; <b>Source ↗</b> ouvre le site d'origine.`],
+  ['🧭',`La barre sous les chiffres saute à une section : synopsis, bande-annonce, distribution, épisodes, similaires.`]]}
+};
+const START_STEPS=[
+ ['Trouve un titre',`Utilise la recherche en haut, les genres de l'accueil, ou la page Découvrir. Tu peux aussi parcourir Films et Séries.`],
+ ['Ouvre sa fiche',`Synopsis, bande-annonce, distribution, épisodes pour les séries, titres similaires.`],
+ ['Ajoute-le à ta liste',`Bouton « ＋ Ajouter à ma liste » sur la fiche, ou le <b>+</b> sur l'affiche. Il arrive en « À voir ».`],
+ ['Suis ta progression',`Coche tes épisodes, change le statut, mets une note de 1 à 5. Le statut s'adapte tout seul.`],
+ ['Regarde tes stats',`Le Profil calcule ton temps regardé, ton niveau, tes genres favoris et ton type de spectateur.`]
+];
+const STATUS_HELP=[
+ ['À voir','#7aa2ff',`Dans ta liste, pas encore commencé. C'est le statut d'un nouvel ajout.`],
+ ['En cours','#b79bff',`Tu as commencé : dès qu'un épisode est coché, la série passe ici toute seule.`],
+ ['Terminé','#3fe0a0',`Tous les épisodes sont vus (ou film marqué « Vu »). Les confettis tombent 🎉`],
+ ['Abandonné','#e0524f',`Tu as arrêté. À choisir à la main : cocher de nouveau un épisode te remet « En cours ».`]
+];
+const PAGES_HELP=[
+ ['#home','🏠 Accueil',`Tes séries en cours, les genres, les séries et films du moment, une rangée « à l'antenne ».`],
+ ['#films','🎬 Films',`Des rangées par genre : tendances, au cinéma, mieux notés, action, horreur…`],
+ ['#series','📺 Séries',`Séries à l'antenne et séries cultes classées par genre.`],
+ ['#catalogue','🧭 Découvrir',`Recherche de films et séries, filtre par genre, tri par note ou année et bouton Jamais vus.`],
+ ['#schedule','📡 Planning',`Les épisodes des 7 prochains jours. « Seulement ma liste » pour filtrer.`],
+ ['#mylist','📚 Ma liste',`Statuts, progression, notes, vue grille ou liste, « Que regarder ? ».`],
+ ['#profile','👤 Profil',`Niveau, XP, top 3, succès, bilan, personnalisation, données et mot de passe.`]
+];
+const TIPS_LIST=[
+ ['🖱️',`Survole une affiche : le bouton <b>+</b> l'ajoute à ta liste sans ouvrir la fiche (sur mobile il est toujours visible).`],
+ ['⌨️',`Tape dans la barre du haut pour afficher des suggestions ; <kbd>Entrée</kbd> affiche tous les résultats dans Découvrir.`],
+ ['➕',`Sur Ma liste ou l'accueil, <b>+1 épisode</b> coche le prochain épisode. Tu n'as pas besoin d'ouvrir la fiche.`],
+ ['🤖',`Les statuts se mettent à jour tout seuls : cocher un épisode passe la série « En cours », tout cocher la passe « Terminé » (avec des confettis).`],
+ ['🔔',`Une série « Terminé » a de nouveaux épisodes ? Ouvre sa fiche : elle repasse « En cours » automatiquement.`],
+ ['⭐',`Les étoiles notent de 1 à 5. Un second clic sur la même étoile retire la note.`],
+ ['📝',`Sur la fiche, la case <b>Mon avis</b> garde tes impressions (500 caractères) avec le titre.`],
+ ['🌐',`Sur une fiche, le bouton <b>Traduire</b> traduit le synopsis. Dans Profil › Personnaliser, tu peux le faire automatiquement en français.`],
+ ['🔗',`« Copier le lien » sur une fiche te donne une adresse directe vers ce titre.`],
+ ['🎲',`« Au hasard » (accueil) te propose un titre que tu n'as pas encore, « Que regarder ? » (Ma liste) pioche dans tes « À voir ».`],
+ ['🕒',`« Continuer à regarder » trie par dernière activité : la série que tu viens de regarder est en premier.`],
+ ['📱',`Sur téléphone, la barre du bas remplace le menu du haut, et le bouton <b>+</b> est toujours visible sur les affiches.`],
+ ['🎨',`Profil › Personnaliser : couleur, taille des affiches, motif de bannière, emoji, humeur, bio et top 3.`],
+ ['💾',`Exporte ta liste en JSON de temps en temps : c'est ta copie de secours, et tu peux la réimporter.`]
+];
+const FAQ=[
+ [`Pourquoi les films n'ont ni note ni bande-annonce ?`,`Sans clé TMDB, les films viennent d'iTunes (pas de notes ni de bandes-annonces, seulement un extrait). Avec une clé TMDB <b>gratuite</b>, tu obtiens tendances, notes, genres, bandes-annonces, distribution et sagas.`],
+ [`Comment obtenir ma clé TMDB ?`,`1) Crée un compte gratuit sur <b>themoviedb.org</b>. 2) Va dans Paramètres › API et fais une demande de clé (usage personnel). 3) Copie la <b>« API Key »</b> de 32 caractères (pas le « Read Access Token »). 4) Colle-la sur l'accueil ou dans Profil › « Clé TMDB ». Elle est ensuite enregistrée dans ton compte.`],
+ [`Mes données sont-elles sauvegardées ?`,`Oui, dans ton compte cloud, quelques instants après chaque action. Quand tu reviens sur l'onglet après avoir utilisé un autre appareil, la liste se resynchronise. Exporte quand même un JSON régulièrement.`],
+ [`J'ai oublié mon mot de passe…`,`Il n'existe pas de récupération automatique (le compte n'est pas lié à un vrai e-mail). Garde ton mot de passe en lieu sûr, et tiens à jour un export JSON : tu pourras réimporter ta liste dans un nouveau compte.`],
+ [`Comment suivre une série épisode par épisode ?`,`Ouvre sa fiche, ajoute-la à ta liste, puis coche les épisodes (ou « Tout cocher » pour une saison). Depuis Ma liste ou l'accueil, <b>+1 épisode</b> coche le suivant d'un clic.`],
+ [`Comment marquer un film comme vu ?`,`Dans Ma liste, bouton <b>Vu ✓</b> sur la carte. Sur la fiche, choisis le statut « Terminé ». Un film terminé compte dans ton temps regardé et ton XP.`],
+ [`Pourquoi une série est repassée « En cours » ?`,`De nouveaux épisodes sont sortis : en ouvrant la fiche d'une série « Terminé », Kinéma compare avec le nombre d'épisodes à jour et la remet « En cours » si tu en as de nouveaux à voir.`],
+ [`À quoi servent les niveaux et l'XP ?`,`Juste à t'amuser. XP = 10 par épisode vu, 40 par film vu, 30 par titre terminé, 5 par titre ajouté. Le niveau monte avec l'XP et le titre change tous les 2 niveaux (Débutant, Curieux, Cinéphile…).`],
+ [`Quels sont les succès ?`,`<b>Premier pas</b> (1 titre), <b>Collectionneur</b> (25), <b>Vidéothèque</b> (100), <b>Marathonien</b> (100 épisodes vus), <b>Binge-watcher</b> (500), <b>Complétiste</b> (10 terminés), <b>Critique</b> (10 notes), <b>Nuit blanche</b> (24 h regardées), <b>Cinéphile</b> (25 films vus). Ils se débloquent seuls.`],
+ [`Pourquoi le planning montre peu de séries ?`,`Par défaut il ne garde que les séries bien notées (7,5+) et celles de ta liste, pour éviter le bruit. Active « Seulement ma liste » pour ne voir que les tiennes.`],
+ [`La traduction du synopsis ne marche plus`,`C'est un service gratuit avec un quota par jour. Si la limite est atteinte, réessaie le lendemain. Les traductions déjà faites restent mémorisées sur cet appareil.`],
+ [`Comment passer sur un autre appareil ?`,`Ouvre le site, connecte-toi avec le même pseudo et le même mot de passe : ta liste, ton profil et ta clé TMDB sont repris automatiquement.`],
+ [`Comment changer de thème ou de taille d'affiches ?`,`Profil › Personnaliser : 5 couleurs, 3 tailles d'affiches, 5 motifs de bannière.`],
+ [`Comment retirer un titre ?`,`Sur Ma liste, le <b>✕</b> en haut de la carte (ou en bout de ligne en vue Liste), ou « Retirer de ma liste » sur la fiche. Une confirmation est demandée : ta progression et ta note seront perdues.`],
+ [`Comment transférer ma liste vers un autre compte ?`,`Profil › Mes données › <b>Exporter JSON</b>, puis connecte-toi sur l'autre compte et utilise <b>Importer</b>. Les titres déjà présents ne sont pas dupliqués.`],
+ [`« Impossible de joindre Firebase » à la connexion`,`Le site n'arrive pas à contacter le stockage cloud : vérifie ta connexion, désactive un bloqueur de publicités ou de traqueurs pour ce site, et si ça persiste, vérifie les règles Firestore du projet.`],
+ [`Les affiches ou les rangées ne se chargent pas`,`Les catalogues viennent de services gratuits (TVmaze, TMDB, iTunes) qui peuvent être lents ou limités. Recharge la page après quelques secondes. Les listes déjà chargées sont gardées en mémoire quelques jours.`]
+];
+const KEYS=[
+ ['/','Aller à la recherche'],['?','Ouvrir cette aide'],
+ ['G puis H','Accueil'],['G puis F','Films'],['G puis S','Séries'],['G puis D','Découvrir'],['G puis C','Planning (calendrier)'],['G puis L','Ma liste'],['G puis P','Profil'],
+ ['Tab','Passer d’un élément à l’autre'],['Entrée','Ouvrir une affiche ou valider'],
+ ['Échap','Fermer une fenêtre, un menu ou la visite'],['← ou →','Naviguer dans la visite guidée']
+];
+const kbdHTML=s=>s.split(' ').map(x=>/^(puis|\+|ou)$/.test(x)?` ${x} `:`<kbd>${x}</kbd>`).join('');
+let _hIdx=null;
+function helpIndex(){
+  if(_hIdx)return _hIdx;const o=[];
+  Object.values(PAGE_HELP).forEach(p=>{o.push({tag:'Page',i:'📄',t:p.t,b:p.d});p.a.forEach(a=>o.push({tag:p.t.replace(/^\S+\s/,''),i:a[0],t:'',b:a[1]}))});
+  START_STEPS.forEach((s,i)=>o.push({tag:'Démarrer',i:String(i+1),t:s[0],b:s[1]}));
+  STATUS_HELP.forEach(s=>o.push({tag:'Statut',i:'🏷️',t:s[0],b:s[2]}));
+  TIPS_LIST.forEach(t=>o.push({tag:'Astuce',i:t[0],t:'',b:t[1]}));
+  KEYS.forEach(k=>o.push({tag:'Raccourci',i:'⌨️',t:kbdHTML(k[0]),b:k[1]}));
+  FAQ.forEach(f=>o.push({tag:'FAQ',i:'❓',t:f[0],b:f[1]}));
+  o.forEach(x=>x.n=normS(x.t+' '+x.b));return _hIdx=o;
+}
+function kkHelpSearch(v){
+  const q=normS(v).trim(),res=$('#kkhRes'),main=$('#kkhMain');if(!res||!main)return;
+  if(q.length<2){res.style.display='none';main.style.display='';return}
+  const toks=q.split(/\s+/),hits=helpIndex().filter(x=>toks.every(t=>x.n.includes(t))).slice(0,14);
+  main.style.display='none';res.style.display='';
+  res.innerHTML=hits.length?hits.map(h=>`<div class="kkh-tip"><i>${h.i}</i><span><span class="kkh-tag">${h.tag}</span>${h.t?`<b style="display:inline;color:var(--text)">${h.t}</b><br>`:''}${h.b}</span></div>`).join(''):`<div class="empty">Rien trouvé pour « ${esc(v.trim())} ». Essaie un mot plus simple (épisode, note, clé, export…).</div>`;
+}
+function openHelp(tab,qi){
+  LS.set('kinema_help_read','1');
+  tab=tab==null?HT.page:tab;
+  const cur=pageOf(),ph=PAGE_HELP[cur]||PAGE_HELP.home,on=i=>i===tab?' on':'';
+  const html=`<div class="kkh">
+  <input class="kkh-search" id="kkhQ" type="search" placeholder="Une question ? Cherche un mot (étoile, épisode, clé TMDB…)" aria-label="Chercher dans l'aide" oninput="kkHelpSearch(this.value)" autocomplete="off">
+  <div id="kkhRes" style="display:none"></div>
+  <div id="kkhMain">
+  <div class="kkh-tabs" role="tablist">${HELP_TABS.map((t,i)=>`<button class="kkh-tab${on(i)}" role="tab" aria-selected="${i===tab}" onclick="kkTab(${i})">${t}</button>`).join('')}</div>
+
+  <div class="kkh-p${on(0)}"><div class="kkh-cur"><b>${ph.t}</b><p>${ph.d}</p></div>${ph.a.map(x=>`<div class="kkh-tip"><i>${x[0]}</i><span>${x[1]}</span></div>`).join('')}
+   <p class="note">Tu es sur cette page. Les onglets ci-dessus couvrent le reste du site.</p></div>
+
+  <div class="kkh-p${on(1)}">
+   <div class="kkh-hero"><p><b>Nouveau ici ?</b> La visite guidée te montre le site en 1 minute, directement sur les vraies pages.</p><button class="btn" onclick="kkTour()">▶ Lancer la visite</button></div>
+   ${START_STEPS.map((s,i)=>`<div class="kkh-step"><div class="kkh-num">${i+1}</div><div><b>${s[0]}</b><span>${s[1]}</span></div></div>`).join('')}
+   <div class="lab">Les 4 statuts</div>
+   <div class="kkh-st">${STATUS_HELP.map(s=>`<div><i style="background:${s[1]}"></i><span><b>${s[0]}</b>${s[2]}</span></div>`).join('')}</div>
+   <p class="note">Pour les vrais films populaires avec notes et bandes-annonces, ajoute ta clé TMDB gratuite (voir l'onglet FAQ).</p>
+  </div>
+
+  <div class="kkh-p${on(2)}"><div class="kkh-pages">${PAGES_HELP.map(p=>`<button class="kkh-pg" onclick="closeModal();location.hash='${p[0]}'"><b>${p[1]}</b><span>${p[2]}</span></button>`).join('')}</div></div>
+
+  <div class="kkh-p${on(3)}">${TIPS_LIST.map(t=>`<div class="kkh-tip"><i>${t[0]}</i><span>${t[1]}</span></div>`).join('')}</div>
+
+  <div class="kkh-p${on(4)}"><table class="kkh-k">${KEYS.map(k=>`<tr><td>${kbdHTML(k[0])}</td><td>${k[1]}</td></tr>`).join('')}</table></div>
+
+  <div class="kkh-p${on(5)}">${FAQ.map((f,i)=>`<details class="kkh-q"${qi===i?' open':''}><summary>${f[0]}</summary><div>${f[1]}</div></details>`).join('')}</div>
+  </div>
+  <div class="kkh-foot"><button class="btn s" onclick="kkTour()">▶ Visite guidée</button><button class="btn s" onclick="kkTips()">${tipsOff()?'Activer':'Désactiver'} les astuces</button><button class="btn s" onclick="kkResetHelp()">Réinitialiser l'aide</button></div>
+  </div>`;
+  openModal(`Centre d'aide`,html,'help');
+  if(tab===HT.faq&&qi!=null){const d=document.querySelectorAll('.kkh-q')[qi];if(d)setTimeout(()=>d.scrollIntoView({block:'nearest'}),50)}
+}
+function openGuide(){openHelp(HT.page)}
+function kkTab(i){document.querySelectorAll('.kkh-tab').forEach((b,j)=>{b.classList.toggle('on',j===i);b.setAttribute('aria-selected',j===i)});document.querySelectorAll('.kkh-p').forEach((b,j)=>b.classList.toggle('on',j===i))}
+function tipsOff(){return LS.get('kinema_tips_off')==='1'}
+function kkTips(){
+  if(tipsOff())LS.del('kinema_tips_off');else{LS.set('kinema_tips_off','1');hideTip()}
+  toast(tipsOff()?'Astuces désactivées':'Astuces activées');closeModal();if(pageOf()==='profile')rProfile();
+}
+function kkResetHelp(){
+  ['kinema_tips_off','kinema_tips_seen','kinema_chk_hide','kinema_help_read'].forEach(k=>LS.del(k));
+  toast('Aide réinitialisée ✓');closeModal();if(pageOf()==='home')fillCont();else if(pageOf()==='profile')rProfile();
+}
+
+/* ---------- Checklist de démarrage ---------- */
+function chkItems(){
+  const P=PROFILE;
+  return[
+   ['Ajoute ton premier titre',LIST.length>0,`location.hash='#catalogue'`],
+   ['Marque un épisode ou un film comme vu',LIST.some(x=>x.type==='tv'?x.watched.length>0:x.status==='completed'),`location.hash='#mylist'`],
+   ['Note un titre avec les étoiles',LIST.some(x=>x.rating>0),`location.hash='#mylist'`],
+   ['Choisis ton top 3 (Profil)',(P.top3||[]).length>0,`location.hash='#profile'`],
+   ['Personnalise ton profil (couleur, bio, emoji)',!!(P.mood||P.bio||(P.emoji&&P.emoji!=='🎬')||(P.accent&&P.accent!=='ai')),`location.hash='#profile'`],
+   ['Active ta clé TMDB pour les vrais films',!!TMDB(),`openHelp(HT.faq,1)`],
+   [`Lis le centre d'aide`,LS.get('kinema_help_read')==='1',`openHelp(HT.page)`]
+  ];
+}
+function chkHTML(){
+  if(LS.get('kinema_chk_hide')==='1')return'';
+  const it=chkItems(),n=it.filter(x=>x[1]).length;
+  if(n===it.length)return'';
+  return`<div class="kkc"><div class="kkc-h"><b>Pour bien démarrer</b><em>${n} / ${it.length}</em><button class="mb" onclick="kkChkHide()">Masquer</button></div>
+  <div class="kkc-bar"><i style="width:${Math.round(n/it.length*100)}%"></i></div>
+  <div class="kkc-l">${it.map(x=>`<button class="kkc-i ${x[1]?'done':''}" onclick="${x[2]}"><s>✓</s><span>${x[0]}</span></button>`).join('')}</div>
+  <div class="kkc-f"><button class="btn s" onclick="kkTour()">▶ Visite guidée</button><button class="btn s" onclick="openHelp(HT.page)">Centre d'aide</button></div></div>`;
+}
+function kkChkHide(){LS.set('kinema_chk_hide','1');const c=$('.kkc');if(c)c.remove();toast('Checklist masquée · tu peux la réafficher depuis ton Profil')}
+function kkChkShow(){LS.del('kinema_chk_hide');toast('Checklist réaffichée sur l’accueil')}
+
+/* ---------- Astuces contextuelles (une fois par page) ---------- */
+const TIPS={
+ home:`Clique sur un genre pour explorer, ou sur 🎲 pour un titre au hasard. Le bouton + sur une affiche l'ajoute directement à ta liste.`,
+ films:`Survole une affiche et clique sur + pour l'ajouter sans ouvrir la fiche. Sans clé TMDB, ce sont les films iTunes qui s'affichent.`,
+ series:`Ouvre une série pour cocher ses épisodes. Elle passera toute seule en « En cours », puis « Terminé ».`,
+ catalogue:`Tape un titre, ou choisis un genre et un tri (note, année). Active « Jamais vus » pour exclure ce que tu as commencé ou terminé dans ta liste.`,
+ schedule:`Active « Seulement ma liste » pour ne voir que les épisodes de tes séries.`,
+ mylist:`Clique sur le statut d'une carte pour le changer, utilise +1 épisode pour avancer, et les étoiles pour noter.`,
+ profile:`Choisis ton top 3 et personnalise ton profil avec le bouton « Personnaliser ». Les succès se débloquent seuls.`,
+ item:`Ajoute le titre à ta liste, puis coche les épisodes. Le bouton 🌐 traduit le synopsis et « Mon avis » garde tes notes.`
+};
+let tipT=null;
+function hideTip(){clearTimeout(tipT);const t=$('#kk-tip');if(t)t.remove()}
+function maybeTip(){
+  hideTip();
+  if(tourOn||tipsOff()||!window.APP_ON)return;
+  const p=pageOf();if(!TIPS[p])return;
+  let seen={};try{seen=JSON.parse(LS.get('kinema_tips_seen')||'{}')}catch(e){}
+  if(seen[p])return;
+  tipT=setTimeout(()=>{
+    if(tourOn||$('#mov')||$('#palov')||pageOf()!==p)return;
+    seen[p]=1;LS.set('kinema_tips_seen',JSON.stringify(seen));
+    const d=document.createElement('div');d.id='kk-tip';d.setAttribute('role','status');
+    d.innerHTML=`<b>💡 Astuce</b><p>${TIPS[p]}</p><div class="r"><button class="mb" onclick="hideTip()">Compris</button><button class="mb" onclick="hideTip();openHelp(HT.page)">En savoir plus</button><button class="mb" onclick="kkTips()">Désactiver</button></div>`;
+    document.body.appendChild(d);tipT=setTimeout(hideTip,16000);
+  },1200);
+}
+addEventListener('hashchange',maybeTip);
+function helpBoot(){
+  let intro=false;
+  if(!PROFILE.tourDone){
+    if(!LIST.length){startTour(0);return}
+    if(!LS.get('kinema_help_intro')){LS.set('kinema_help_intro','1');intro=true;toast('✨ Nouveau : visite guidée et centre d’aide avec le bouton ?')}
+  }
+  if(!intro)maybeTip();
 }
 
 /* ===== CLAVIER ===== */
+let gAt=0;
+const GMAP={h:'#home',f:'#films',s:'#series',d:'#catalogue',c:'#schedule',l:'#mylist',p:'#profile'};
 addEventListener('keydown',e=>{
-  const typing=/INPUT|TEXTAREA|SELECT/.test(e.target.tagName);
+  const t=e.target,typing=/INPUT|TEXTAREA|SELECT/.test(t.tagName)||t.isContentEditable;
   if(e.key==='Escape'){closeModal();closePalette();closePE();mlCloseMenu()}
-  
-  if(e.key==='/'&&!typing){e.preventDefault();$('#nav-q').focus()}
+  if(!window.APP_ON)return;
+  if(tourOn||typing||e.ctrlKey||e.metaKey||e.altKey)return;
+  if(e.key==='/'){e.preventDefault();$('#nav-q').focus();return}
+  if(e.key==='?'){e.preventDefault();openHelp(HT.keys);return}
+  const k=e.key.toLowerCase();
+  if(Date.now()-gAt<1200&&GMAP[k]){e.preventDefault();gAt=0;location.hash=GMAP[k];return}
+  if(k==='g')gAt=Date.now();
 });
 
 /* ===== DÉMARRAGE (appelé après connexion Firebase) ===== */
@@ -1370,21 +1828,8 @@ window.startApp=function(data){
   PROFILE={...DEF_PROFILE,...(data.profile||{})};if(data.accent&&!(data.profile&&data.profile.accent))PROFILE.accent=data.accent;
   savedVer=ver;lastSync=new Date();setSync('ok');
   if(data.tmdb)localStorage.setItem('kinema_tmdb',data.tmdb);
-  applyLook();window.APP_ON=true;route();
+  applyLook();window.APP_ON=true;route();setTimeout(helpBoot,1200);
 };
 </script>
-
-<script>
-/* Améliorations mobiles : hauteur réelle + retour fluide */
-(function(){
-  const setVH=()=>document.documentElement.style.setProperty('--app-vh',window.innerHeight+'px');
-  setVH();addEventListener('resize',setVH);
-  document.addEventListener('click',e=>{
-    const back=e.target.closest('.back');
-    if(back){e.preventDefault();history.length>1?history.back():location.hash='#home';}
-  });
-})();
-</script>
-
 </body>
 </html>
