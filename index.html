@@ -555,18 +555,18 @@ details.kkh-q div b{color:var(--text)}
 <nav class="navbar" aria-label="Navigation principale">
   <a class="logo" href="#home"><i>K</i><span>Kinéma</span></a>
   <div class="links">
-    <a class="lk" href="#home" data-p="home">Accueil</a><a class="lk" href="#films" data-p="films">Films</a><a class="lk" href="#series" data-p="series">Séries</a><a class="lk" href="#catalogue" data-p="catalogue">Découvrir</a>
+    <a class="lk" href="#home" data-p="home">Accueil</a><a class="lk" href="#films" data-p="films">Films</a><a class="lk" href="#series" data-p="series">Séries</a>
     <a class="lk" href="#schedule" data-p="schedule">Planning</a><a class="lk" href="#mylist" data-p="mylist">Ma liste</a><a class="lk" href="#profile" data-p="profile">Profil</a>
   </div>
   <div class="sbox"><input id="nav-q" placeholder="Rechercher… ( / )" aria-label="Rechercher un film ou une série" autocomplete="off" aria-controls="search-suggestions" aria-expanded="false"><div id="search-suggestions" role="region" aria-label="Suggestions de recherche" hidden></div></div>
   <button class="ib" onclick="openGuide()" title="Aide et visite guidée" aria-label="Aide et visite guidée">?</button>
 </nav>
 <main class="main">
-  <div class="page" id="p-home"></div><div class="page" id="p-films"></div><div class="page" id="p-series"></div><div class="page" id="p-catalogue"></div><div class="page" id="p-schedule"></div>
+  <div class="page" id="p-home"></div><div class="page" id="p-films"></div><div class="page" id="p-series"></div><div class="page" id="p-search"></div><div class="page" id="p-schedule"></div>
   <div class="page" id="p-mylist"></div><div class="page" id="p-profile"></div><div class="page" id="p-detail"></div>
 </main>
 <nav class="bnav" aria-label="Navigation mobile">
-  <a href="#home" data-p="home"><span aria-hidden="true">🏠</span>Accueil</a><a href="#films" data-p="films"><span aria-hidden="true">🎬</span>Films</a><a href="#series" data-p="series"><span aria-hidden="true">📺</span>Séries</a><a href="#catalogue" data-p="catalogue"><span aria-hidden="true">🧭</span>Explorer</a><a href="#schedule" data-p="schedule"><span aria-hidden="true">📡</span>Planning</a><a href="#mylist" data-p="mylist"><span aria-hidden="true">📚</span>Liste</a><a href="#profile" data-p="profile"><span aria-hidden="true">👤</span>Profil</a>
+  <a href="#home" data-p="home"><span aria-hidden="true">🏠</span>Accueil</a><a href="#films" data-p="films"><span aria-hidden="true">🎬</span>Films</a><a href="#series" data-p="series"><span aria-hidden="true">📺</span>Séries</a><a href="#schedule" data-p="schedule"><span aria-hidden="true">📡</span>Planning</a><a href="#mylist" data-p="mylist"><span aria-hidden="true">📚</span>Liste</a><a href="#profile" data-p="profile"><span aria-hidden="true">👤</span>Profil</a>
 </nav>
 <button class="totop" id="totop" aria-label="Haut de page" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div id="modals"></div>
@@ -906,8 +906,9 @@ setInterval(()=>document.querySelectorAll('.cd').forEach(e=>{e.textContent='S'+e
 
 /* ===== ROUTEUR ===== */
 let heroT=null;
-const PAGES=['home','films','series','catalogue','schedule','mylist','profile','item'];
+const PAGES=['home','films','series','search','schedule','mylist','profile','item'];
 function route(){
+  if(location.hash==='#catalogue'){location.replace('#films');return}
   const h=decodeURIComponent(location.hash.slice(1))||'home';
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
   clearInterval(heroT);mlCloseMenu();
@@ -916,7 +917,7 @@ function route(){
   document.querySelectorAll('.lk,.bnav a').forEach(l=>{const on=l.dataset.p===page;l.classList.toggle('on',on);on?l.setAttribute('aria-current','page'):l.removeAttribute('aria-current')});
   if(page!=='item')document.title='Kinéma — Tes films et séries';
   window.scrollTo(0,0);
-  ({home:rHome,films:rFilms,series:rSeries,catalogue:rCat,schedule:rSched,mylist:rList,profile:rProfile,item:()=>rDetail(h.slice(5))})[page]();
+  ({home:rHome,films:rFilms,series:rSeries,search:rCat,schedule:rSched,mylist:rList,profile:rProfile,item:()=>rDetail(h.slice(5))})[page]();
 }
 function route2(){const h=location.hash.slice(1)||'home';if(h.startsWith('item/'))return;const y=scrollY;route();setTimeout(()=>scrollTo(0,y),0)}
 addEventListener('hashchange',()=>{if(window.APP_ON)route()});
@@ -925,7 +926,7 @@ const fillRow=(id,l)=>{const e=$(id);if(e)e.innerHTML=l.length?l.map(a=>card(a))
 
 /* ===== ACCUEIL ===== */
 const TILES=[['Action','💥','#ff6a3d'],['Comédie','😂','#d99a00'],['Drame','🎭','#8a4dff'],['Science-fiction','🚀','#3d4cff'],['Fantastique','🧙','#00a3b8'],['Horreur','😱','#b91c1c'],['Policier','🔍','#5b5b6b'],['Romance','❤️','#ff4f9a'],['Animation','🎨','#17b26a'],['Aventure','🌍','#ff9a2e'],['Thriller','🕵️','#e11d48']];
-function openGenre(g){cat={type:'all',q:'',sort:'rel',genre:g};location.hash==='#catalogue'?rCat():location.hash='#catalogue'}
+function openGenre(g){browseStates.films.genre=g;browseStates.films.q='';location.hash==='#films'?rFilms():location.hash='#films'}
 function contCard(l){const tot=l.totalEps||0,pct=tot?Math.min(100,Math.round(l.watched.length/tot*100)):0;
   return`<div class="cc" role="link" tabindex="0" onkeydown="if(event.key==='Enter')this.click()" onclick="location.hash='#item/${esc(l.key)}'"><img src="${esc(l.cover||FALLBACK)}" alt="" loading="lazy"><div class="b"><div class="ct" style="min-height:0">${esc(l.title)}</div><div class="cs">${l.type==='tv'?`${l.watched.length}${tot?' / '+tot:''} ép.`:'En cours'}</div><div class="bar" style="height:8px;margin:7px 0"><i style="width:${pct}%"></i></div></div>${l.type==='tv'?`<button class="mb" style="flex:0 0 auto" aria-label="Épisode suivant vu" onclick="event.stopPropagation();incEp('${esc(l.key)}')">+1</button>`:''}</div>`}
 function fillCont(){
@@ -937,7 +938,7 @@ async function rHome(){
   const el=$('#p-home');
   if(el.dataset.ok){fillCont();startHero();return}
   el.innerHTML=`<div class="hero" id="hero">${spin}</div><div class="wrap">${keyBox()}<div id="cont"></div>
-  <div class="sec"><div class="sh"><span class="st">Explorer par genre</span><a class="more" href="#catalogue">Catalogue complet →</a></div><div class="tiles">${TILES.map(([g,e,c])=>`<button class="tile" style="--tc:${c}" onclick="openGenre('${g}')"><span class="gk">${e}</span><b>${g}</b></button>`).join('')}<button class="tile" style="--tc:#ffe14d" onclick="surpriseMe()"><span class="gk">🎲</span><b>Au hasard</b></button></div></div>
+  <div class="sec"><div class="sh"><span class="st">Explorer par genre</span><a class="more" href="#films">Voir les films →</a></div><div class="tiles">${TILES.map(([g,e,c])=>`<button class="tile" style="--tc:${c}" onclick="openGenre('${g}')"><span class="gk">${e}</span><b>${g}</b></button>`).join('')}<button class="tile" style="--tc:#ffe14d" onclick="surpriseMe()"><span class="gk">🎲</span><b>Au hasard</b></button></div></div>
   ${rowHTML('r-tv','Séries cultes','<a class="more" href="#series">Toutes les séries →</a>')}${rowHTML('r-mv','Films du moment','<a class="more" href="#films">Tous les films →</a>')}
   ${rowHTML('r-air',"À l'antenne en ce moment",'<a class="more" href="#schedule">Planning →</a>')}${rowHTML('r-top','Les mieux notés')}</div>
   <div class="foot">Kinéma · séries : TVmaze (CC BY-SA) · films : ${TMDB()?'TMDB':'iTunes / Apple'}${TMDB()?'<br>This product uses the TMDB API but is not endorsed or certified by TMDB.':''}</div>`;
@@ -970,13 +971,13 @@ async function surpriseMe(){
 
 /* ===== FILMS / SÉRIES ===== */
 let filmsToken=0;
-const browseStates={films:{type:'movie',q:'',sort:'rel',genre:'',unseen:false},series:{type:'tv',q:'',sort:'rel',genre:'',unseen:false},catalogue:{type:'all',q:'',sort:'rel',genre:'',unseen:false}};
-let cat=browseStates.catalogue,catT=null,browseSeq=0;
-function activeBrowse(){const p=location.hash.slice(1).split('/')[0];return ['films','series'].includes(p)?p:'catalogue'}
+const browseStates={films:{type:'movie',q:'',sort:'rel',genre:'',unseen:false},series:{type:'tv',q:'',sort:'rel',genre:'',unseen:false},search:{type:'all',q:'',sort:'rel',genre:'',unseen:false}};
+let cat=browseStates.search,catT=null,browseSeq=0;
+function activeBrowse(){const p=location.hash.slice(1).split('/')[0];return ['films','series'].includes(p)?p:'search'}
 function hasBeenSeen(a){const l=inList(a.key);return !!l&&(l.status==='completed'||l.status==='watching'||(l.watched||[]).length>0)}
 function renderBrowse(section){
  browseStates[section].type=section==='films'?'movie':section==='series'?'tv':'all';
- const st=browseStates[section],title={films:'Films',series:'Séries',catalogue:'Découvrir'}[section];
+ const st=browseStates[section],title={films:'Films',series:'Séries',search:'Résultats de recherche'}[section];
  $('#p-'+section).innerHTML=`<div class="wrap"><h1 class="pt">${title}</h1>${section==='films'?keyBox():''}
  <div class="bigsearch"><input id="browse-q" type="search" aria-label="Rechercher ${title.toLowerCase()}" placeholder="${section==='films'?'Rechercher un film…':section==='series'?'Rechercher une série…':'Un film, une série…'}" value="${esc(st.q)}" oninput="onBrowse(this.value,'${section}')" onkeydown="if(event.key==='Enter'){clearTimeout(catT);browseStates['${section}'].q=this.value.trim();runBrowse('${section}')} "></div>
  <div class="pills browse-controls">
@@ -989,10 +990,10 @@ function renderBrowse(section){
 }
 function rFilms(){renderBrowse('films')}
 function rSeries(){renderBrowse('series')}
-function rCat(){browseStates.catalogue=cat;renderBrowse('catalogue')}
+function rCat(){browseStates.search=cat;renderBrowse('search')}
 function onBrowse(v,section){clearTimeout(catT);browseStates[section].q=v.trim();++browseSeq;catT=setTimeout(()=>runBrowse(section),300)}
-function onCat(v){onBrowse(v,'catalogue')}
-function runCat(){runBrowse('catalogue')}
+function onCat(v){onBrowse(v,'search')}
+function runCat(){runBrowse('search')}
 async function runBrowse(section){
  const box=$('#browse-results-'+section);if(!box)return;
  const seq=++browseSeq,st={...browseStates[section],type:section==='films'?'movie':section==='series'?'tv':'all'};box.innerHTML=spin;
@@ -1015,7 +1016,7 @@ async function runBrowse(section){
 let suggestTimer,suggestSeq=0;
 const navSearch=$('#nav-q'),suggestions=$('#search-suggestions');
 function closeSuggestions(){suggestions.hidden=true;navSearch.setAttribute('aria-expanded','false')}
-function submitNavSearch(){const q=navSearch.value.trim();if(!q)return;clearTimeout(suggestTimer);++suggestSeq;cat={...browseStates.catalogue,type:'all',q,genre:''};browseStates.catalogue=cat;closeSuggestions();navSearch.blur();location.hash==='#catalogue'?rCat():location.hash='#catalogue'}
+function submitNavSearch(){const q=navSearch.value.trim();if(!q)return;clearTimeout(suggestTimer);++suggestSeq;cat={...browseStates.search,type:'all',q,genre:''};browseStates.search=cat;closeSuggestions();navSearch.blur();location.hash==='#search'?rCat():location.hash='#search'}
 navSearch.addEventListener('input',()=>{
  clearTimeout(suggestTimer);const q=navSearch.value.trim(),seq=++suggestSeq;
  if(q.length<2){closeSuggestions();return}
@@ -1308,7 +1309,7 @@ function rListRender(){
   <div class="ml-view"><button class="${listView!=='compact'?'on':''}" onclick="setView('grid')">Grille</button><button class="${listView==='compact'?'on':''}" onclick="setView('compact')">Liste</button></div>
   <button class="pl" onclick="pickForMe()">🎲 Que regarder ?</button></div></div>
   ${items.length?(listView==='compact'?`<div class="ml-list">${items.map(mlRow).join('')}</div>`:`<div class="ml-grid">${items.map(mlCard).join('')}</div>`)
-   :`<div class="ml-empty"><div class="k">${LIST.length?'無':'空'}</div><b>${LIST.length?'Aucun résultat':'Ta liste est vide'}</b><p>${LIST.length?'Aucun titre ne correspond à ces filtres.':'Ajoute ton premier film ou ta première série depuis le catalogue.'}</p>${LIST.length?'<button class="btn" onclick="lf={st:\'all\',type:\'all\',q:\'\',sort:\'recent\',genre:\'\'};rList()">Réinitialiser les filtres</button>':'<a class="btn" href="#catalogue">Ouvrir le catalogue</a>'}</div>`}</div>`;
+   :`<div class="ml-empty"><div class="k">${LIST.length?'無':'空'}</div><b>${LIST.length?'Aucun résultat':'Ta liste est vide'}</b><p>${LIST.length?'Aucun titre ne correspond à ces filtres.':'Ajoute ton premier titre depuis Films ou Séries.'}</p>${LIST.length?'<button class="btn" onclick="lf={st:\'all\',type:\'all\',q:\'\',sort:\'recent\',genre:\'\'};rList()">Réinitialiser les filtres</button>':'<a class="btn" href="#films">Choisir un titre</a>'}</div>`}</div>`;
 }
 function setView(v){listView=v;try{localStorage.setItem('kinema_view',v)}catch(e){}rList()}
 function pickForMe(excl){
@@ -1449,7 +1450,7 @@ function importJSON(i){const f=i.files[0];if(!f)return;if(f.size>5e6){toast('Fic
 let palSel=0,palItems=[],palTimer=null;
 const PAL_CMDS=()=>[
  {ic:'🏠',t:'Accueil',run:()=>location.hash='#home'},{ic:'🎬',t:'Films',run:()=>location.hash='#films'},{ic:'📺',t:'Séries',run:()=>location.hash='#series'},
- {ic:'🧭',t:'Découvrir',run:()=>location.hash='#catalogue'},{ic:'📡',t:'Planning des sorties',run:()=>location.hash='#schedule'},{ic:'📚',t:'Ma liste',run:()=>location.hash='#mylist'},
+ {ic:'📡',t:'Planning des sorties',run:()=>location.hash='#schedule'},{ic:'📚',t:'Ma liste',run:()=>location.hash='#mylist'},
  {ic:'👤',t:'Mon profil',run:()=>location.hash='#profile'},{ic:'🎲',t:'Surprends-moi',run:()=>surpriseMe()},{ic:'🍿',t:'Que regarder ce soir ?',run:()=>pickForMe()},
  {ic:'⬇️',t:'Exporter ma liste (JSON)',run:()=>exportJSON()},{ic:'❓',t:'Centre d\u2019aide',run:()=>openGuide()},{ic:'🧭',t:'Visite guidée',run:()=>startTour()},{ic:'⌨️',t:'Raccourcis clavier',run:()=>openHelp(HT.keys)},{ic:'⏻',t:'Se déconnecter',run:()=>window.doLogout&&window.doLogout()}];
 function openPalette(){
@@ -1497,12 +1498,12 @@ const HELP_TABS=['Cette page','Démarrer','Les pages','Astuces','Raccourcis','FA
 /* ---------- Visite guidée ---------- */
 const TOUR=[
  {title:'Bienvenue sur Kinéma 🎬',text:`Kinéma est ton <b>carnet privé de films et séries</b> : tu repères un titre, tu l'ajoutes à ta liste et tu notes où tu en es. Le site ne diffuse rien, il sert à t'organiser.<br><br>La visite dure une minute. Utilise <kbd>←</kbd> <kbd>→</kbd> pour avancer et <kbd>Échap</kbd> pour quitter.`},
- {hash:'#home',sel:()=>isMobile()?'.bnav':'.links',title:'Le menu',text:`<b>Accueil</b>, <b>Films</b>, <b>Séries</b>, <b>Découvrir</b> (recherche), <b>Planning</b> des sorties, <b>Ma liste</b> et ton <b>Profil</b>. Tout part de là.`},
- {sel:()=>isMobile()?'.sbox':'#nav-q',title:'La recherche',text:`Tape un titre pour obtenir des suggestions de films et séries. Avec <kbd>Entrée</kbd>, tu arrives dans <b>Découvrir</b> avec les résultats films et séries. Astuce : la touche <kbd>/</kbd> place le curseur ici.`},
+ {hash:'#home',sel:()=>isMobile()?'.bnav':'.links',title:'Le menu',text:`<b>Accueil</b>, <b>Films</b>, <b>Séries</b>, <b>Planning</b> des sorties, <b>Ma liste</b> et ton <b>Profil</b>. Tout part de là.`},
+ {sel:()=>isMobile()?'.sbox':'#nav-q',title:'La recherche',text:`Tape un titre pour obtenir des suggestions de films et séries. Avec <kbd>Entrée</kbd>, tu arrives dans <b>Résultats de recherche</b> avec les résultats films et séries. Astuce : la touche <kbd>/</kbd> place le curseur ici.`},
  {hash:'#films',sel:'.browse-controls',title:'Tes filtres',text:`Dans <b>Films</b>, seuls les films sont proposés ; dans <b>Séries</b>, seules les séries. Choisis un genre, un tri et active <b>Jamais vus</b> pour exclure ce que tu as commencé ou terminé dans ta liste.`},
  {sel:'.navbar .ib[aria-label="Aide et visite guidée"]',title:'Ton aide, toujours là',text:`Le bouton <b>?</b> ouvre le <b>centre d'aide</b> : ce que tu peux faire sur la page où tu es, les astuces, les raccourcis clavier et la FAQ. Tu peux aussi y chercher un mot.`},
  {hash:'#home',sel:'.tiles',title:'Explorer par genre',text:`Clique sur un genre pour voir les titres correspondants, ou sur <b>🎲 Au hasard</b> pour te laisser surprendre. Plus haut, <b>Continuer à regarder</b> retrouvera tes séries en cours.`},
- {hash:'#catalogue',sel:'.bigsearch',title:'Découvrir',text:`Cherche, filtre par <b>genre</b>, trie par <b>note</b> ou <b>année</b>. Sur chaque affiche, le bouton <b>+</b> (au survol) l'ajoute à ta liste en un clic, sans ouvrir la fiche.`},
+ {hash:'#series',sel:'.bigsearch',title:'Trouver une série',text:`Cherche, filtre par <b>genre</b>, trie par <b>note</b> ou <b>année</b>. Sur chaque affiche, le bouton <b>+</b> (au survol) l'ajoute à ta liste en un clic, sans ouvrir la fiche.`},
  {title:`La fiche d'un titre`,text:`Clique sur une affiche pour ouvrir sa fiche : <b>synopsis</b> (bouton 🌐 pour le traduire), <b>bande-annonce</b>, <b>distribution</b>, titres similaires.<br><br>Pour une série, tu <b>coches les épisodes</b> un par un (ou une saison entière) et le site te dit lequel est le prochain. Tu peux aussi écrire <b>ton avis</b>.`},
  {hash:'#schedule',sel:'.days',title:'Le planning',text:`Les épisodes qui sortent dans les 7 prochains jours. Active <b>« Seulement ma liste »</b> pour ne voir que tes séries.`},
  {hash:'#mylist',sel:'.ml-hero',title:'Ma liste',text:`Ta collection et tes statistiques : épisodes vus, temps regardé, note moyenne. Tout se met à jour tout seul.`},
@@ -1567,7 +1568,7 @@ function endTour(finished){
   removeEventListener('keydown',tourKey,true);removeEventListener('resize',tourLayout);removeEventListener('scroll',tourLayout);
   const o=$('#kkt');if(o)o.remove();
   if(!PROFILE.tourDone){PROFILE.tourDone=true;save()}
-  if(finished)location.hash=LIST.length?'#home':'#catalogue';
+  if(finished)location.hash=LIST.length?'#home':'#films';
   else toast('Visite quittée · relance-la avec le bouton « ? » en haut');
 }
 const kkTour=startTour,kkTourEnd=()=>endTour(false);
@@ -1577,7 +1578,7 @@ const PAGE_HELP={
  home:{t:'🏠 Accueil',d:`Ton point de départ : reprends tes séries, explore par genre, repère ce qui passe en ce moment.`,a:[
   ['▶',`<b>Continuer à regarder</b> liste tes séries « En cours » : le bouton <b>+1</b> coche l'épisode suivant sans ouvrir la fiche.`],
   ['🖱️',`Clique une affiche pour ouvrir sa fiche. Au survol, le bouton <b>+</b> l'ajoute directement à ta liste.`],
-  ['🎭',`Les <b>tuiles de genre</b> mènent au catalogue filtré ; <b>🎲 Au hasard</b> te propose un titre que tu n'as pas encore.`],
+  ['🎭',`Les <b>tuiles de genre</b> mènent au search filtré ; <b>🎲 Au hasard</b> te propose un titre que tu n'as pas encore.`],
   ['🖼️',`Le grand bandeau défile tout seul : clique les petits traits en bas pour changer de titre.`],
   ['✅',`La checklist « Pour bien démarrer » te guide pas à pas. Tu peux la masquer, et la réafficher depuis ton Profil.`]]},
  films:{t:'🎬 Films',d:`Des rangées de films par genre (tendances, au cinéma, mieux notés, action, horreur…).`,a:[
@@ -1587,7 +1588,7 @@ const PAGE_HELP={
  series:{t:'📺 Séries',d:`Les séries à l'antenne et les séries cultes, classées par genre.`,a:[
   ['📡',`« À l'antenne en ce moment » : les séries bien notées qui passent aujourd'hui. Le détail jour par jour est dans <b>Planning</b>.`],
   ['☑️',`Ouvre une série pour cocher ses épisodes : elle passera toute seule « En cours », puis « Terminé ».`]]},
- catalogue:{t:'🧭 Découvrir',d:`Le moteur de recherche de Kinéma, pour les films et les séries.`,a:[
+ search:{t:'🧭 Résultats de recherche',d:`Le moteur de recherche de Kinéma, pour les films et les séries.`,a:[
   ['🔍',`Tape un titre : les résultats arrivent au bout d'un instant, films et séries mélangés.`],
   ['🎚️',`Les boutons <b>Tout / Séries / Films</b>, le menu <b>Genre</b> et le menu <b>Trier</b> (pertinence, note, année) affinent les résultats.`],
   ['⚡',`Le filtre <b>Jamais vus</b> masque les titres terminés, en cours ou avec des épisodes déjà cochés dans ta liste.`],
@@ -1618,7 +1619,7 @@ const PAGE_HELP={
   ['🧭',`La barre sous les chiffres saute à une section : synopsis, bande-annonce, distribution, épisodes, similaires.`]]}
 };
 const START_STEPS=[
- ['Trouve un titre',`Utilise la recherche en haut, les genres de l'accueil, ou la page Découvrir. Tu peux aussi parcourir Films et Séries.`],
+ ['Trouve un titre',`Utilise la recherche en haut, les genres de l'accueil, ou la page Résultats de recherche. Tu peux aussi parcourir Films et Séries.`],
  ['Ouvre sa fiche',`Synopsis, bande-annonce, distribution, épisodes pour les séries, titres similaires.`],
  ['Ajoute-le à ta liste',`Bouton « ＋ Ajouter à ma liste » sur la fiche, ou le <b>+</b> sur l'affiche. Il arrive en « À voir ».`],
  ['Suis ta progression',`Coche tes épisodes, change le statut, mets une note de 1 à 5. Le statut s'adapte tout seul.`],
@@ -1634,14 +1635,13 @@ const PAGES_HELP=[
  ['#home','🏠 Accueil',`Tes séries en cours, les genres, les séries et films du moment, une rangée « à l'antenne ».`],
  ['#films','🎬 Films',`Des rangées par genre : tendances, au cinéma, mieux notés, action, horreur…`],
  ['#series','📺 Séries',`Séries à l'antenne et séries cultes classées par genre.`],
- ['#catalogue','🧭 Découvrir',`Recherche de films et séries, filtre par genre, tri par note ou année et bouton Jamais vus.`],
  ['#schedule','📡 Planning',`Les épisodes des 7 prochains jours. « Seulement ma liste » pour filtrer.`],
  ['#mylist','📚 Ma liste',`Statuts, progression, notes, vue grille ou liste, « Que regarder ? ».`],
  ['#profile','👤 Profil',`Niveau, XP, top 3, succès, bilan, personnalisation, données et mot de passe.`]
 ];
 const TIPS_LIST=[
  ['🖱️',`Survole une affiche : le bouton <b>+</b> l'ajoute à ta liste sans ouvrir la fiche (sur mobile il est toujours visible).`],
- ['⌨️',`Tape dans la barre du haut pour afficher des suggestions ; <kbd>Entrée</kbd> affiche tous les résultats dans Découvrir.`],
+ ['⌨️',`Tape dans la barre du haut pour afficher des suggestions ; <kbd>Entrée</kbd> affiche tous les résultats.`],
  ['➕',`Sur Ma liste ou l'accueil, <b>+1 épisode</b> coche le prochain épisode. Tu n'as pas besoin d'ouvrir la fiche.`],
  ['🤖',`Les statuts se mettent à jour tout seuls : cocher un épisode passe la série « En cours », tout cocher la passe « Terminé » (avec des confettis).`],
  ['🔔',`Une série « Terminé » a de nouveaux épisodes ? Ouvre sa fiche : elle repasse « En cours » automatiquement.`],
@@ -1672,11 +1672,11 @@ const FAQ=[
  [`Comment retirer un titre ?`,`Sur Ma liste, le <b>✕</b> en haut de la carte (ou en bout de ligne en vue Liste), ou « Retirer de ma liste » sur la fiche. Une confirmation est demandée : ta progression et ta note seront perdues.`],
  [`Comment transférer ma liste vers un autre compte ?`,`Profil › Mes données › <b>Exporter JSON</b>, puis connecte-toi sur l'autre compte et utilise <b>Importer</b>. Les titres déjà présents ne sont pas dupliqués.`],
  [`« Impossible de joindre Firebase » à la connexion`,`Le site n'arrive pas à contacter le stockage cloud : vérifie ta connexion, désactive un bloqueur de publicités ou de traqueurs pour ce site, et si ça persiste, vérifie les règles Firestore du projet.`],
- [`Les affiches ou les rangées ne se chargent pas`,`Les catalogues viennent de services gratuits (TVmaze, TMDB, iTunes) qui peuvent être lents ou limités. Recharge la page après quelques secondes. Les listes déjà chargées sont gardées en mémoire quelques jours.`]
+ [`Les affiches ou les rangées ne se chargent pas`,`Les searchs viennent de services gratuits (TVmaze, TMDB, iTunes) qui peuvent être lents ou limités. Recharge la page après quelques secondes. Les listes déjà chargées sont gardées en mémoire quelques jours.`]
 ];
 const KEYS=[
  ['/','Aller à la recherche'],['?','Ouvrir cette aide'],
- ['G puis H','Accueil'],['G puis F','Films'],['G puis S','Séries'],['G puis D','Découvrir'],['G puis C','Planning (calendrier)'],['G puis L','Ma liste'],['G puis P','Profil'],
+ ['G puis H','Accueil'],['G puis F','Films'],['G puis S','Séries'],['G puis C','Planning (calendrier)'],['G puis L','Ma liste'],['G puis P','Profil'],
  ['Tab','Passer d’un élément à l’autre'],['Entrée','Ouvrir une affiche ou valider'],
  ['Échap','Fermer une fenêtre, un menu ou la visite'],['← ou →','Naviguer dans la visite guidée']
 ];
@@ -1749,7 +1749,7 @@ function kkResetHelp(){
 function chkItems(){
   const P=PROFILE;
   return[
-   ['Ajoute ton premier titre',LIST.length>0,`location.hash='#catalogue'`],
+   ['Ajoute ton premier titre',LIST.length>0,`location.hash='#films'`],
    ['Marque un épisode ou un film comme vu',LIST.some(x=>x.type==='tv'?x.watched.length>0:x.status==='completed'),`location.hash='#mylist'`],
    ['Note un titre avec les étoiles',LIST.some(x=>x.rating>0),`location.hash='#mylist'`],
    ['Choisis ton top 3 (Profil)',(P.top3||[]).length>0,`location.hash='#profile'`],
@@ -1775,7 +1775,7 @@ const TIPS={
  home:`Clique sur un genre pour explorer, ou sur 🎲 pour un titre au hasard. Le bouton + sur une affiche l'ajoute directement à ta liste.`,
  films:`Survole une affiche et clique sur + pour l'ajouter sans ouvrir la fiche. Sans clé TMDB, ce sont les films iTunes qui s'affichent.`,
  series:`Ouvre une série pour cocher ses épisodes. Elle passera toute seule en « En cours », puis « Terminé ».`,
- catalogue:`Tape un titre, ou choisis un genre et un tri (note, année). Active « Jamais vus » pour exclure ce que tu as commencé ou terminé dans ta liste.`,
+ search:`Tape un titre, ou choisis un genre et un tri (note, année). Active « Jamais vus » pour exclure ce que tu as commencé ou terminé dans ta liste.`,
  schedule:`Active « Seulement ma liste » pour ne voir que les épisodes de tes séries.`,
  mylist:`Clique sur le statut d'une carte pour le changer, utilise +1 épisode pour avancer, et les étoiles pour noter.`,
  profile:`Choisis ton top 3 et personnalise ton profil avec le bouton « Personnaliser ». Les succès se débloquent seuls.`,
@@ -1809,7 +1809,7 @@ function helpBoot(){
 
 /* ===== CLAVIER ===== */
 let gAt=0;
-const GMAP={h:'#home',f:'#films',s:'#series',d:'#catalogue',c:'#schedule',l:'#mylist',p:'#profile'};
+const GMAP={h:'#home',f:'#films',s:'#series',c:'#schedule',l:'#mylist',p:'#profile'};
 addEventListener('keydown',e=>{
   const t=e.target,typing=/INPUT|TEXTAREA|SELECT/.test(t.tagName)||t.isContentEditable;
   if(e.key==='Escape'){closeModal();closePalette();closePE();mlCloseMenu()}
