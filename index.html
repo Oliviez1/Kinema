@@ -736,7 +736,8 @@ window.doLogout = async () => {
 };
 window.cloudSave = async payload => {
   const u = auth.currentUser; if (!u) throw new Error('Non connecté');
-  await setDoc(doc(db, 'users', u.uid), { ...payload, updatedAt: Date.now() }, { merge: true });
+  const clean = JSON.parse(JSON.stringify({ ...payload, updatedAt: Date.now() }));
+  await setDoc(doc(db, 'users', u.uid), clean, { merge: true });
 };
 window.cloudLoad = async () => {
   const u = auth.currentUser; if (!u) throw new Error('Non connecté');
@@ -804,7 +805,7 @@ function closeModal(keep){const had=$('#modals').innerHTML;$('#modals').innerHTM
 const DEF_PROFILE={bio:'',mood:'',top3:[],emoji:'🎬',density:'normal',pattern:'lines',accent:'ai',autoTr:false,tourDone:false};
 const sj=o=>JSON.stringify(o,(k,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.entries(v).sort(([a],[b])=>a<b?-1:a>b?1:0)):v);
 let LIST=[],PROFILE={...DEF_PROFILE},ver=0,savedVer=0,_st=null,lastSync=null;
-const payload=()=>({list:LIST,tmdb:localStorage.getItem('kinema_tmdb')||'',accent:PROFILE.accent,profile:PROFILE});
+const payload=()=>({list:LIST,tmdb:localStorage.getItem('kinema_tmdb')||'',accent:PROFILE.accent||'ai',profile:PROFILE});
 function setSync(s){const e=$('#sync');if(!e)return;e.className='sync '+(s==='ok'?'':s);e.textContent=s==='ok'?'☁':s==='wait'?'⏳':'⚠';e.title=s==='ok'?'Tout est enregistré':s==='wait'?'Enregistrement…':'Échec de la sauvegarde (vérifie ta connexion)'}
 async function flushSave(){
   clearTimeout(_st);
@@ -1308,7 +1309,7 @@ async function loadSimilar(a){
   if(list.length)h+=`<div class="sec"><div class="sh"><span class="st">Si tu aimes</span></div><div class="row">${list.map(x=>card(x)).join('')}</div></div>`;
   if(h){box.innerHTML=h;const b=$('#dnSim');if(b)b.style.display=''}
 }
-function addFromDetail(key){const a=CC[key];add(a);const l=inList(key);if(a.type==='tv')l.totalEps=a.totalEps;save();toast('Ajouté ✓');
+function addFromDetail(key){const a=CC[key];add(a);const l=inList(key);if(a.type==='tv')l.totalEps=a.totalEps||0;save();toast('Ajouté ✓');
   const d=$('#dbtn');d.querySelector('.btn:not(.s)')?.remove();d.insertAdjacentHTML('afterbegin','<span class="pill">✓ Dans ta liste</span> ');renderTrack(a);if(a.type==='tv')renderEps(a)}
 const nextOf=(l,a)=>a.episodes?.find(e=>!l.watched.includes(e.id));
 function renderTrack(a){
@@ -1963,12 +1964,11 @@ window.startApp=function(data){
 </script>
 
 <script>
-/* Kinéma v3.4 — ajouts (hors logique d'origine) */
+/* Kinéma v3.5 — ajouts (hors logique d'origine) */
 (()=>{
 const $=(q,r=document)=>r.querySelector(q),$$=(q,r=document)=>[...r.querySelectorAll(q)];
 const safe=f=>(...a)=>{try{return f(...a)}catch(e){console.warn('[kx]',e)}};
 const deb=(f,t=120)=>{let h;return()=>{clearTimeout(h);h=setTimeout(f,t)}};
-/* Ma liste : on garde la carte sur laquelle tu viens d'agir au même endroit à l'écran */
 const keyOf=el=>{const m=(el.getAttribute('onclick')||'').match(/#item\/([^']+)'/);return m?m[1]:null};
 const cardSel='#p-mylist .ml-card[onclick*="#item/"],#p-mylist .ml-row[onclick*="#item/"]';
 try{const orig=window.rListRender;if(typeof orig==='function'){window.rListRender=function(){
